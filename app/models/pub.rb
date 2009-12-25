@@ -14,7 +14,7 @@ class Pub < ActiveRecord::Base
   def preprocess
     # Links
     # "http://foo.com/user/thing/id" => "
-    # <a href="http://foo.com/user/thing/id" class="waw-url web" rel="nofollow" target="_blank">http://foo.com/user...</a>
+    # <a href="http://foo.com/user/thing/id" class="codesolo-url web" rel="nofollow" target="_blank">http://foo.com/user...</a>
 
   end
 

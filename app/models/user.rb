@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
     c.validates_length_of_login_field_options :within => 3..30
     # c.validates_format_of_login_field_options :with => /A\w[w\.\-_@ ]+z/, :message => I18n.t('authlogic.validates.format_login_field')
     c.validates_uniqueness_of_login_field_options :allow_blank => false
+
+    c.openid_required_fields = [:nickname, :email]
   end
 
 
@@ -65,6 +67,13 @@ class User < ActiveRecord::Base
     # if Place.close_to(point)
     #   update_attributes(:geom => point)
     # end
+  end
+
+  private
+
+  def map_openid_registration(registration)
+    self.email = registration["email"] if email.blank?
+    self.login = registration["nickname"] if login.blank?
   end
 
 

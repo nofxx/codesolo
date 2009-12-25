@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :state,            :null  => false, :default => 'passive'
       t.string :motto, :url
 
-      t.string :crypted_password, :password_salt, :null => false
+      t.string :crypted_password, :password_salt, :null => true, :default => nil
       t.string :persistence_token, :single_access_token, :perishable_token,
                :current_login_ip, :last_login_ip
 
@@ -25,6 +25,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.boolean :on, :null => false, :default => false
 
+      t.string :open_id_identifier
 
       t.timestamps
     end
@@ -38,6 +39,7 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :perishable_token
     add_index :users, :single_access_token
     add_index :users, :last_request_at
+    add_index :users, :open_id_identifier
   end
 
   def self.down

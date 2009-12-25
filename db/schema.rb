@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "binds", :force => true do |t|
     t.integer "user_id",                         :null => false
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(:version => 5) do
 
   add_index "groups", ["name"], :name => "index_groups_on_name"
   add_index "groups", ["sync_at"], :name => "index_groups_on_sync_at"
+
+  create_table "open_id_authentication_associations", :force => true do |t|
+    t.integer "issued"
+    t.integer "lifetime"
+    t.string  "handle"
+    t.string  "assoc_type"
+    t.binary  "server_url"
+    t.binary  "secret"
+  end
+
+  create_table "open_id_authentication_nonces", :force => true do |t|
+    t.integer "timestamp",  :null => false
+    t.string  "server_url"
+    t.string  "salt",       :null => false
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "name",                          :null => false
@@ -106,8 +121,8 @@ ActiveRecord::Schema.define(:version => 5) do
     t.string   "state",                              :default => "passive", :null => false
     t.string   "motto"
     t.string   "url"
-    t.string   "crypted_password",                                          :null => false
-    t.string   "password_salt",                                             :null => false
+    t.string   "crypted_password"
+    t.string   "password_salt"
     t.string   "persistence_token"
     t.string   "single_access_token"
     t.string   "perishable_token"
@@ -124,6 +139,7 @@ ActiveRecord::Schema.define(:version => 5) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "on",                                 :default => false,     :null => false
+    t.string   "open_id_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -134,6 +150,7 @@ ActiveRecord::Schema.define(:version => 5) do
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["on"], :name => "index_users_on_on"
+  add_index "users", ["open_id_identifier"], :name => "index_users_on_open_id_identifier"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
   add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token"

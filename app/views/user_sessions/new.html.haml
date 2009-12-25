@@ -1,28 +1,20 @@
 #box
   .block
-    %h2
-      Login
+    %h2 Login
     .content.login
       - form_for UserSession.new, :url => user_session_path, :html => {:class => "form" } do |f|
         = f.error_messages
         .group
-          .left
-            = f.label :login
+          .left= f.label :login
           .right= f.text_field :login
           .clear
         .group
-          .left
-            = f.label :password
+          .left= f.label :password
           .right= f.password_field :password
           .clear
         .group
-          .left
-            = f.label :remember?
+          .left= f.label :remember?
           .right= f.check_box :remember_me
-          .clear
-        .group
-          .left
-            = f.label "Login from facebook"
           .clear
         .group.navform
           .left
@@ -32,9 +24,14 @@
           .clear
 #box
   .block
-    %h2
-      Login from facebook
-#box
-  .block
-    %h2
-      Login from twitter
+    %h2 Login from Open ID
+    .content.login
+      - form_for UserSession.new, :url => user_session_path, :html => {:class => "form" } do |f|
+        = f.error_messages
+        .group
+          .left= f.label :openid_identifier
+          .right= f.text_field :openid_identifier
+          .clear
+        .group.navform
+          %input.button{ :type => "submit", :value => "Login" }
+          .clear

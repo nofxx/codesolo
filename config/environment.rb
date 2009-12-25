@@ -9,6 +9,8 @@ Rails::Initializer.run do |config|
 
   config.gem "haml"
   config.gem "authlogic"
+  config.gem "authlogic-oid", :lib => "authlogic_openid"
+  config.gem "ruby-openid", :lib => "openid"
   config.gem "will_paginate"
   config.gem "paperclip"
   config.gem "nofxx-symbolize", :lib => "symbolize"
