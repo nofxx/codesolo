@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def before_validation
+    self.login ||= openid_identifier.split("/")[-1] rescue nil
     self.kind ||= :user
     self.time_zone ||= "Brasilia"
     self.locale ||= I18n.default_locale
@@ -69,6 +70,13 @@ class User < ActiveRecord::Base
     # end
   end
 
+  def self.find_by_openid_identifier(identifier)
+    u = User.first(:conditions => { :openid_identifier => identifier })
+    p u
+    u ||= User.create(:openid_identifier => identifier)
+    p u.errors
+    u
+  end
   private
 
   def map_openid_registration(registration)

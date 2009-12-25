@@ -10,18 +10,30 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
-  def create
-    @user = User.new(params[:user])
-
-    if @user.save
-      flash[:notice] = "Usuário criado!"
-      redirect_back_or_default @user
+def create
+  @user = User.new(params[:user])
+  @user.save do |result|
+    if result
+      flash[:notice] = "Registration successful."
+      redirect_to root_url
     else
-      flash[:error]  = "Erro ao atualizar usuário."
       render :action => 'new'
     end
   end
+end
+
+def update
+  @user = current_user
+  @user.attributes = params[:user]
+  @user.save do |result|
+    if result
+      flash[:notice] = "Successfully updated profile."
+      redirect_to root_url
+    else
+      render :action => 'edit'
+    end
+  end
+end
 
   def show
     @user = User.find(params[:id])
@@ -29,37 +41,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-  end
-
-  def update
-    @user = current_user # makes our views "cleaner" and more consistent
-    if @user.update_attributes(params[:user])
-      flash[:notice] = "Usuário atualizado!"
-      redirect_to @user
-    else
-      render :action => :edit
-    end
-  end
-
-  def fetch
-    @user = User.find(params[:id])
-    @user.fetch_me
-
-    respond_to do |format|
-      format.html { redirect_to(@user) }
-      format.xml  { head :ok }
-    end
-
-  end
-
-  def fetch_all
-    User.fetch_all
-
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
-    end
-
   end
 
   def suspend

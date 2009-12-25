@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(:version => 6) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "on",                                 :default => false,     :null => false
-    t.string   "open_id_identifier"
+    t.string   "openid_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(:version => 6) do
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["on"], :name => "index_users_on_on"
-  add_index "users", ["open_id_identifier"], :name => "index_users_on_open_id_identifier"
+  add_index "users", ["openid_identifier"], :name => "index_users_on_openid_identifier"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
   add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token"

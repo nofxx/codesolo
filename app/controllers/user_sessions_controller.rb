@@ -3,16 +3,19 @@ class UserSessionsController < ApplicationController
   skip_before_filter :require_user, :only => [:new, :create]
 
   def new
-   # @user_session = UserSession.new
+    # @user_session = UserSession.new
   end
+
 
   def create
     @user_session = UserSession.new(params[:user_session])
-    if @user_session.save
-      flash[:notice] = "Bem vindo #{@user_session.user.name}!"
-      redirect_back_or_default "/" #account_url
-    else
-      render :action => :new
+    @user_session.save do |result|
+      if result
+        flash[:notice] = "Successfully logged in."
+        redirect_to root_url
+      else
+        render :action => 'new'
+      end
     end
   end
 

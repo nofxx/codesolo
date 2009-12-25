@@ -25,7 +25,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.boolean :on, :null => false, :default => false
 
-      t.string :open_id_identifier
+      t.string :openid_identifier
 
       t.timestamps
     end
@@ -39,7 +39,7 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :perishable_token
     add_index :users, :single_access_token
     add_index :users, :last_request_at
-    add_index :users, :open_id_identifier
+    add_index :users, :openid_identifier
   end
 
   def self.down
