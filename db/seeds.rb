@@ -22,7 +22,7 @@ end
 
 User.find_by_login("joker").update_attribute(:motto, "Why so serious?")
 
-Project.create!(:name => "jah", :url => "http://github.com/nofxx/jah", :skill => 2)
+Project.create!(:name => "codesolo", :url => "http://github.com/nofxx/codesolo", :skill => 2)
 
 nofxx = User.find_by_login("nofxx")
 nofxx.binds.create(:project => Project.first, :kind => :owner)

@@ -16,6 +16,7 @@
 - content_for :sidebar do
   .block
     - if @user
+      %li= link_to "Options", "/options"
       %h2= @user.name
       = link_to @user.name
       .gray
