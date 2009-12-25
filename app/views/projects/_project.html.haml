@@ -28,9 +28,6 @@
       = f.text_field :devs
       Active developers
     %p
-      = f.label :skill
-      %br
-      = f.select :skill, 1..5
-      Skill needed (1 apprentice => 5 jedi)
+      = skill_select(f)
   .clear
   = save_or_cancel(f)

@@ -6,6 +6,9 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   # config.frameworks -= [ :action_mailer ]
+  config.time_zone = 'UTC'
+  config.i18n.load_path += Dir[File.join(RAILS_ROOT, "lib", "locales", "*.{rb,yml}")]
+  config.i18n.default_locale = "en"
 
   config.gem "haml"
   config.gem "authlogic"
@@ -15,10 +18,8 @@ Rails::Initializer.run do |config|
   config.gem "paperclip"
   config.gem "nofxx-symbolize", :lib => "symbolize"
 
-  config.time_zone = 'UTC'
-  config.i18n.default_locale = :en
-
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
+

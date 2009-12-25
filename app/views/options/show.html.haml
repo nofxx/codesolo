@@ -14,7 +14,7 @@
             = f.text_field :motto
           .group
             = f.label :password
-            = f.password_field :password
+            = f.password_field :password, :autocomplete => :off
           .group
             = f.label :password_confirmation
             = f.password_field :password_confirmation
@@ -31,6 +31,7 @@
           .group
             = f.label :language_select
             = language_select
+          .group= skill_select(f)
         .clear
         = save_or_cancel(f)
 

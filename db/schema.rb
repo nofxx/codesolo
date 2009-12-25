@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 6) do
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.integer  "login_count"
+    t.integer  "skill"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -154,5 +155,6 @@ ActiveRecord::Schema.define(:version => 6) do
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
   add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token"
+  add_index "users", ["skill"], :name => "index_users_on_skill"
 
 end

@@ -63,20 +63,18 @@ class Project < ActiveRecord::Base
   end
 
   def fetch_github
-    #begin
-     p data = YAML.load(`curl #{GH_URL}/#{gh_id}`)["repository"]
+    begin
+      data = YAML.load(`curl #{GH_URL}/#{gh_id}`)["repository"]
       self.name ||= data[:name]
       self.info = data[:description] unless is_set?(self.info)
       #self.fork ||= data[:fork]
       self.attributes =  {:todos => data[:open_issues],
                           :forks  => data[:forks],
                           :watchers => data[:watchers]}
-    p self.attributes
-    #rescue => e
-    #  puts "GH fetch fail #{e}" + e.backtrace.join("\n")
-    #end
+    rescue => e
+      puts "GH fetch fail #{e}" + e.backtrace.join("\n")
+    end
   end
-
 
   def before_validation
     self.todo = url + '/issues' if url && !is_set?(todo)

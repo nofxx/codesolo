@@ -3,12 +3,11 @@
 #
 # Create initial data
 
-
-["admin", "juvenal", "jaodonato", "boxmo", "cachorra", "clecle", "nofxx", "marcos", "joker", "unknown"].each do |p|
+["admin", "juvenal", "jaodonato", "nofxx",  "joker", "unknown"].each do |p|
   User.create(:login => p, :password => p, :kind => :admin, :on => true,
              # :avatar => p == "unknown" ? nil : File.new(RAILS_ROOT + "/db/avatars/#{p}.jpg"),
              :password_confirmation => p, :state => :active, :name => p.capitalize,
-             :email => "#{p}@fireho.com", :time_zone => "Brasilia", :locale => "pt")
+             :email => "#{p}@fireho.com", :time_zone => "Brasilia", :locale => "en")
 end
 
 # ["Rock", "Bike", "Ruby", "Linux"].each do |g|

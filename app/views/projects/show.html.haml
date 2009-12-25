@@ -9,10 +9,10 @@
       =h @project.devs
     %li
       %strong Skill:
-      =h @project.skill
+      = skill_name(@project.skill)
     %li
       %strong Todo:
-      =h @project.todo
+      = link_to @project.todo, @project.todo
     %li
       %strong Karma:
       =h @project.karma

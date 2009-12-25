@@ -15,7 +15,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.string :time_zone, :locale, :limit => 50, :null => false
       t.datetime :last_login_at, :last_request_at, :current_login_at
-      t.integer  :login_count
+      t.integer  :login_count, :skill
       # t.string :doc, :reg, :limit => 20
       # t.string :twitter_pass,     :limit => 50
 
@@ -35,6 +35,7 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :login, :unique => true
     add_index :users, :kind
     add_index :users, :email
+    add_index :users, :skill
     add_index :users, :persistence_token
     add_index :users, :perishable_token
     add_index :users, :single_access_token
