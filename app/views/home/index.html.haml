@@ -6,20 +6,23 @@
     %h2.title Spotlight
     .inner.form
     .inner
-      - if @first
+      - unless @all.empty?
         %ol
-          %li.pub_item.latest
-            = link_to @first.name, @first
-            = show_tags(@first)
           - for item in @all
-            %li.pub_item
+            %li.pub_item.latest
               = link_to item.name, item
+              (#{skill_text(item.skill)} - #{item.devs})
+              %span.gray (#{item.karma})
               = show_tags(item)
       - else
         No projects?
 
 
 - content_for :sidebar do
+  .block.notice
+    %h4
+      Solo?
+    %p= t('solo.intro')
   .block
     - if current_user
       %h3= link_to "My projects", "/profile"
@@ -33,16 +36,10 @@
       -#     - for project in slice
       -#       = link_to image_tag(project.avatar.url(:tiny)), project
 
-
   .block
     .sidebar-block
       %h4 Tags
     .inner
       %ul.navigation= tag_cloud
 
-  .block.notice
-    %h4
-      Notice Title
-    %p
-      Morbi posuere urna vitae nunc. Curabitur ultrices, lorem ac aliquam
 

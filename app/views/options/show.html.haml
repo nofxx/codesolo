@@ -38,7 +38,6 @@
 
 - content_for :sidebar do
   .block
-    %h3
-      Admin
+    %h3= @user.login
     %ul.navigation
       %li= link_to current_user.email, "/options"

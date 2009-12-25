@@ -5,3 +5,6 @@ en:
     "3": Pro
     "4": Master
     "5": Jedi
+  solo:
+    intro: Coding alone isn`t fun. The goal here is to find/get coders
+           for cool projects. Starting with Code Solo itself ;)

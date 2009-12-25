@@ -72,11 +72,9 @@ class User < ActiveRecord::Base
 
   def self.find_by_openid_identifier(identifier)
     u = User.first(:conditions => { :openid_identifier => identifier })
-    p u
     u ||= User.create(:openid_identifier => identifier)
-    p u.errors
-    u
   end
+
   private
 
   def map_openid_registration(registration)
