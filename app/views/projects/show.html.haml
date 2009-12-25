@@ -5,6 +5,12 @@
 - content_tag_for :div, @project do
   %ul
     %li
+      %strong Devs:
+      =h @project.devs
+    %li
+      %strong Skill:
+      =h @project.skill
+    %li
       %strong Todo:
       =h @project.todo
     %li

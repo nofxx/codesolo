@@ -8,7 +8,7 @@ class CreateProjects < ActiveRecord::Migration
                 :null => false, :default => 0
 
       t.text :info
-      t.boolean :fork
+      t.boolean :fork, :tests, :null => false, :default => false
 
       t.timestamp :synced_at
       t.timestamps

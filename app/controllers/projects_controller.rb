@@ -88,7 +88,7 @@ class ProjectsController < ApplicationController
   private
 
   def find_project
-    @project = Project.find(params[:id]) if params[:id]
+    @project = Project.find_by_name(params[:id]) if params[:id]
   end
 
   def require_user

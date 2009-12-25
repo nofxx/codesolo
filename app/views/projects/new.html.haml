@@ -1,2 +1,4 @@
-%h2 New project
-= render :partial => "form", :locals => {:project => @project}
+#block-forms.block
+  .content
+    %h2.title New Project
+    .inner= render @project

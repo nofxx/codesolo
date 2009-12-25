@@ -16,8 +16,14 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :url
 
   validates_numericality_of :watchers, :forks, :todos
+  validates_inclusion_of :skill, :in => 1..5
+  validates_inclusion_of :devs, :in => 1..50
 
   named_scope :ranked, :order => :karma
+
+  def to_param
+    name
+  end
 
   def owners
     binds.all(:conditions => { :kind => :owner}).map(&:user)
@@ -72,7 +78,7 @@ class Project < ActiveRecord::Base
 
   def before_validation
     self.todo = url + '/issues' if url && !is_set?(todo)
-    self.devs ||= 1
+    self.devs = 1 if devs.zero?
    # fetch_github unless self.name
   end
 

@@ -1,5 +1,7 @@
-%h2 Editing project
-= render :partial => "form", :locals => {:project => @project}
+#block-forms.block
+  .content
+    %h2.title Editing project
+    .inner= render @project
 %ul
   %li= link_to 'Show', @project
   %li= link_to 'Destroy', @project, :confirm => 'Are you sure?', :method => :delete

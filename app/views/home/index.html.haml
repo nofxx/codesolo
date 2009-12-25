@@ -16,15 +16,17 @@
               = link_to item.name, item
               = show_tags(item)
       - else
-        No pubs.
+        No projects?
 
 
 - content_for :sidebar do
   .block
     - if current_user
       %h3= link_to "My projects", "/profile"
-      - for project in current_user.projects
-        %li= link_to project.name, project
+      %ul.navigation
+        %li= link_to "New project!", new_project_path
+        - for project in current_user.projects
+          %li= link_to project.name, project
       -# %table.user_grid
       -#  current_user.projects.each_slice(5) do |slice|
       -#   %tr

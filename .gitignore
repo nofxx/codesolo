@@ -18,6 +18,7 @@ thumbs.db
 tmp/*
 log/*
 config/database.yml
+config/deploy.rb
 db/*.sqlite3
 db/development_structure.sql
 

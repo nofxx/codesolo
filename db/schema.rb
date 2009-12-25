@@ -38,21 +38,22 @@ ActiveRecord::Schema.define(:version => 5) do
   add_index "groups", ["sync_at"], :name => "index_groups_on_sync_at"
 
   create_table "projects", :force => true do |t|
-    t.string   "name",                      :null => false
+    t.string   "name",                          :null => false
     t.string   "url"
     t.string   "todo"
     t.string   "wiki"
     t.string   "forum"
     t.string   "mailist"
     t.string   "irc"
-    t.integer  "devs",       :default => 0, :null => false
-    t.integer  "karma",      :default => 0, :null => false
-    t.integer  "skill",      :default => 0, :null => false
-    t.integer  "todos",      :default => 0, :null => false
-    t.integer  "forks",      :default => 0, :null => false
-    t.integer  "watchers",   :default => 0, :null => false
+    t.integer  "devs",       :default => 0,     :null => false
+    t.integer  "karma",      :default => 0,     :null => false
+    t.integer  "skill",      :default => 0,     :null => false
+    t.integer  "todos",      :default => 0,     :null => false
+    t.integer  "forks",      :default => 0,     :null => false
+    t.integer  "watchers",   :default => 0,     :null => false
     t.text     "info"
-    t.boolean  "fork"
+    t.boolean  "fork",       :default => false, :null => false
+    t.boolean  "tests",      :default => false, :null => false
     t.datetime "synced_at"
     t.datetime "created_at"
     t.datetime "updated_at"
