@@ -6,6 +6,10 @@
 
         - else
           No projects.
+    - elsif @tag
+      %h2 ##{@tag.name}
+      - for project in @tag.projects
+        %p= link_to project.name
     - else
       #{params[:login]} is avaiable, wanna register it ?
 

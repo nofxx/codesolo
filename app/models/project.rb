@@ -9,6 +9,8 @@ class Project < ActiveRecord::Base
   has_many :taggings, :as => :taggable
   has_many :tags, :through => :taggings
 
+  has_many :pubs
+
   validates_presence_of :name
   validates_presence_of :url
 

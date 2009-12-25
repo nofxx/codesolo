@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :contacts, :as => :contactable
   has_many :taggings, :as => :taggable
   has_many :tags, :through => :taggings
+  has_many :pubs
   # has_many :friendships
   # has_many :friends, :through => :friendships #, :class_name => "User"
 

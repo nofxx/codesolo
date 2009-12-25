@@ -31,6 +31,16 @@
   %h3 Tags
   = show_tags(@project)
 
+  %h3 Pubs
+  - if current_user
+    - form_for Pub.new do |f|
+      = f.hidden_field :project_id, :value => @project.id
+      = f.text_field :body
+      = f.submit "Send"
+
+  - for pub in @project.pubs
+    %p= puts_pub(pub)
+
 %ul
   %li= link_to 'Edit', edit_project_path(@project) if current_user && current_user.owns?(@project)
   %li= link_to 'Back', projects_path

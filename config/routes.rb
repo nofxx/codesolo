@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home', :action => 'index'
 
   map.resources :projects, :member => { :watch => :post }
+  map.resources :pubs
+  map.resources :tags
 
   map.resources :users,  :member => { :follow => :post, :unfollow => :post }
   # map.resources :groups, :member => { :join => :post,   :unjoin => :post }

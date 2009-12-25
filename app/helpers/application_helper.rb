@@ -16,6 +16,31 @@ module ApplicationHelper
     end + "</span>"
   end
 
+  def tag_cloud
+    Tag.all.inject("<div class='cloud'>") do |str, tag|
+      str += "<a href='/#{tag.name}'>#{tag.name}</a> "
+    end + "</div>"
+  end
+
+  def puts_pub(pub, avatar=false, latest=false)
+    out = ""
+    if avatar
+      out << "<span class='thumb'>#{image_tag pub.user.avatar.url(:thumb)}</span><span class='pub_body'>"
+    else
+      out << "<span>"
+    end
+    out << "<span class='#{latest ? 'pub_highlight' : 'pub_body_text'}'>"
+    out << "<a href=/#{pub.user.login}>#{pub.user.login}</a>" #if avatar
+    out << " #{pub.parsed_text} </span>"
+    out << "<span class='pub_info'>"
+    # out << "On #{link_to pub.project.name, pub.project} " if pub.project
+    out << "(#{pub.created_at})</span></span>"
+    out << "<ul class='actions-hover'><li><span class='del'><span class='delete-icon icon'>
+           <a  href='/' ></a> </span> </span></li></ul>"
+
+  end
+
+
   def display_flashes
     flashes = ''
     unless flash.size == 0

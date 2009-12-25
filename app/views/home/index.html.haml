@@ -38,10 +38,7 @@
     .sidebar-block
       %h4 Tags
     .inner
-      %ul.navigation
-        - for tag in @tags
-          = link_to tag.name, "/#{tag}"
-
+      %ul.navigation= tag_cloud
 
   .block.notice
     %h4

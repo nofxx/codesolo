@@ -20,6 +20,10 @@ class Pub < ActiveRecord::Base
 
 
 
+  def parsed_text
+    body
+  end
+
   def before_save
 
   end

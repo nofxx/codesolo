@@ -15,6 +15,10 @@ end
 #   Group.create(:name => g)
 # end
 
+["C", "ruby", "erlang", "java", "javascript", "xmpp", "rails",
+ "C++", "sql", "tokyo", "mongodb", "couchdb", "voldemort"].each do |n|
+  Tag.create(:name => n)
+end
 
 User.find_by_login("joker").update_attribute(:motto, "Why so serious?")
 

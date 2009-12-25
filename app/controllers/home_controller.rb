@@ -10,7 +10,11 @@ class HomeController < ApplicationController
   end
 
   def profile
-    @user = User.find_by_login(params[:login])
+    if @user = User.find_by_login(params[:login])
+    elsif @tag = Tag.find_by_name(params[:login])
+    elsif @project = Project.find_by_name(params[:login])
+      redirect_to @project
+    end
   end
 
 
