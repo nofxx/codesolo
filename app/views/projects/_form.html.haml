@@ -8,10 +8,17 @@
     = f.label :url
     %br
     = f.text_field :url
+    Skip this if your login is the same as github.
     Only github info fetching for now.
   %p
     = f.label :todo
     %br
     = f.text_field :todo
-    Defaults to project URL/issues
+    Defaults to project URL/issues.
+  %p
+    = f.label :tags_text
+    %br
+    = f.text_field :tags_text
+    Languages & Technologies used
+
   = save_or_cancel(f)

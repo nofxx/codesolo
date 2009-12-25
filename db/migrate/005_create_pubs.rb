@@ -10,7 +10,6 @@ class CreatePubs < ActiveRecord::Migration
 
     add_index :pubs, :user_id
     add_index :pubs, :project_id
-    add_index :pubs, :event_at
     add_index :pubs, :head
   end
 

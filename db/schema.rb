@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 5) do
 
   create_table "binds", :force => true do |t|
     t.integer "user_id",                         :null => false
@@ -17,7 +17,9 @@ ActiveRecord::Schema.define(:version => 7) do
     t.string  "kind",       :default => "watch", :null => false
   end
 
+  add_index "binds", ["project_id"], :name => "index_binds_on_project_id"
   add_index "binds", ["user_id", "project_id"], :name => "index_binds_on_user_id_and_project_id"
+  add_index "binds", ["user_id"], :name => "index_binds_on_user_id"
 
   create_table "groups", :force => true do |t|
     t.string   "name",                :null => false
@@ -43,16 +45,43 @@ ActiveRecord::Schema.define(:version => 7) do
     t.string   "forum"
     t.string   "mailist"
     t.string   "irc"
+    t.integer  "devs",       :default => 0, :null => false
     t.integer  "karma",      :default => 0, :null => false
     t.integer  "skill",      :default => 0, :null => false
+    t.integer  "todos",      :default => 0, :null => false
+    t.integer  "forks",      :default => 0, :null => false
+    t.integer  "watchers",   :default => 0, :null => false
+    t.text     "info"
+    t.boolean  "fork"
+    t.datetime "synced_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "projects", ["devs"], :name => "index_projects_on_devs"
+  add_index "projects", ["forks"], :name => "index_projects_on_forks"
+  add_index "projects", ["karma"], :name => "index_projects_on_karma"
   add_index "projects", ["name"], :name => "index_projects_on_name"
+  add_index "projects", ["skill"], :name => "index_projects_on_skill"
+  add_index "projects", ["synced_at"], :name => "index_projects_on_synced_at"
+  add_index "projects", ["url"], :name => "index_projects_on_url"
+  add_index "projects", ["watchers"], :name => "index_projects_on_watchers"
+
+  create_table "pubs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "head",       :null => false
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pubs", ["head"], :name => "index_pubs_on_head"
+  add_index "pubs", ["project_id"], :name => "index_pubs_on_project_id"
+  add_index "pubs", ["user_id"], :name => "index_pubs_on_user_id"
 
   create_table "taggings", :force => true do |t|
-    t.integer "tag_id"
+    t.integer "tag_id",        :null => false
     t.integer "taggable_id"
     t.string  "taggable_type"
   end
@@ -61,11 +90,12 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
 
   create_table "tags", :force => true do |t|
-    t.string  "name",           :null => false
-    t.integer "taggings_count"
+    t.string  "name",                          :null => false
+    t.integer "taggings_count", :default => 0, :null => false
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
+  add_index "tags", ["taggings_count"], :name => "index_tags_on_taggings_count"
 
   create_table "users", :force => true do |t|
     t.string   "login",               :limit => 80,                         :null => false

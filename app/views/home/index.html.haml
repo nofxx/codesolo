@@ -8,9 +8,13 @@
     .inner
       - if @first
         %ol
-          %li.pub_item.latest= @first.name
+          %li.pub_item.latest
+            = link_to @first.name, @first
+            = show_tags(@first)
           - for item in @all
-            %li.pub_item= item.name
+            %li.pub_item
+              = link_to item.name, item
+              = show_tags(item)
       - else
         No pubs.
 
@@ -18,12 +22,14 @@
 - content_for :sidebar do
   .block
     - if current_user
-      %h3= link_to "Places", "/places"
+      %h3= link_to "My projects", "/profile"
+      - for project in current_user.projects
+        %li= link_to project.name, project
       -# %table.user_grid
-      -# -  current_user.places.each_slice(5) do |slice|
+      -#  current_user.projects.each_slice(5) do |slice|
       -#   %tr
-      -#     - for place in slice
-      -#       = link_to image_tag(place.avatar.url(:tiny)), place
+      -#     - for project in slice
+      -#       = link_to image_tag(project.avatar.url(:tiny)), project
 
 
   .block
@@ -31,6 +37,8 @@
       %h4 Tags
     .inner
       %ul.navigation
+        - for tag in @tags
+          = link_to tag.name, "/#{tag}"
 
 
   .block.notice

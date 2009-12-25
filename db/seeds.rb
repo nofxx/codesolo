@@ -18,7 +18,9 @@ end
 
 User.find_by_login("joker").update_attribute(:motto, "Why so serious?")
 
-# nofxx = User.find_by_login("nofxx")
-# nofxx.groups << Group.all
+Project.create(:name => "jah", :url => "http://github.com/nofxx/jah")
+
+nofxx = User.find_by_login("nofxx")
+nofxx.binds.create(:project => Project.first, :kind => :owner)
 #nofxx.save
 

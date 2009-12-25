@@ -4,8 +4,13 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name, :null => false
       t.string :url, :todo, :wiki, :forum, :mailist, :irc
 
-      t.integer :karma, :skill, :null => false, :default => 0
+      t.integer :devs, :karma, :skill, :todos, :forks, :watchers,
+                :null => false, :default => 0
 
+      t.text :info
+      t.boolean :fork
+
+      t.timestamp :synced_at
       t.timestamps
     end
 
@@ -15,9 +20,13 @@ class CreateProjects < ActiveRecord::Migration
     end
 
     add_index :projects, :name
+    add_index :projects, :devs
     add_index :projects, :karma
     add_index :projects, :skill
     add_index :projects, :url
+    add_index :projects, :watchers
+    add_index :projects, :forks
+    add_index :projects, :synced_at
 
     add_index :binds, [:user_id, :project_id]
     add_index :binds, :user_id

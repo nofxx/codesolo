@@ -1,10 +1,13 @@
 class ProjectsController < ApplicationController
 
   before_filter :find_project
-
+  before_filter :require_user, :only => [:destroy, :edit]
 
   def create
     @project = Project.new(params[:project])
+    if @project.name && @project.url == ''
+      @project.url = "http://github.com/#{current_user.login}/#{@project.name}"
+    end
     respond_to do |format|
       if @project.save
         @project.binds.create(:user => current_user, :kind => :owner)
@@ -41,6 +44,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    redirect_to projects_path unless current_user.owns?(@project)
   end
 
   def watch
@@ -87,4 +91,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id]) if params[:id]
   end
 
+  def require_user
+    redirect_to "/" unless current_user
+  end
 end

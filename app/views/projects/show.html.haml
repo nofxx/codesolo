@@ -1,20 +1,30 @@
-%h2= @project.to_param
+%h2= @project.name
+%strong= link_to @project.url, @project.url
 .gray= @project.owners.map(&:name).join(",")
 
 - content_tag_for :div, @project do
   %ul
-    %li
-      %strong Name:
-      =h @project.name
-    %li
-      %strong Url:
-      =h @project.url
     %li
       %strong Todo:
       =h @project.todo
     %li
       %strong Karma:
       =h @project.karma
+    %li
+      %strong TODOs:
+      = @project.todos
+    %li
+      %strong Forks:
+      = @project.forks
+    %li
+      %strong Watchers:
+      = @project.watchers
+    %p
+      = @project.info
+
+  %h3 Tags
+  = show_tags(@project)
+
 %ul
-  %li= link_to 'Edit', edit_project_path(@project)
+  %li= link_to 'Edit', edit_project_path(@project) if current_user && current_user.owns?(@project)
   %li= link_to 'Back', projects_path

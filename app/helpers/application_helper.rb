@@ -10,6 +10,12 @@ module ApplicationHelper
     current_user.kind == :admin
   end
 
+  def show_tags(o)
+    o.tags.inject("<span class='gray'>") do |str, tag|
+      str += "<a href='/#{tag.name}'>#{tag.name}</a> "
+    end + "</span>"
+  end
+
   def display_flashes
     flashes = ''
     unless flash.size == 0

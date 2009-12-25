@@ -101,6 +101,9 @@ body {
 #main-navigation {
   width: 100%; }
 
+#main ul {
+  list-style-type: none; }
+
 #user-navigation ul, #main-navigation ul, .secondary-navigation ul, #sidebar ul.navigation {
   margin: 0;
   padding: 0;

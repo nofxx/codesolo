@@ -3,13 +3,9 @@
     - if @user
       .inner
         - unless @user.projects.empty?
-          - pubs = @user.pubs
-          %ol
-            %li.pub_item.latest= puts_pub(pubs.delete_at(0), true, true)
-            - for pub in pubs
-              %li.pub_item= puts_pub(pub)
+
         - else
-          No pubs.
+          No projects.
     - else
       #{params[:login]} is avaiable, wanna register it ?
 

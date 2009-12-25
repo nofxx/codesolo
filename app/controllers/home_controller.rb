@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   def index
     @all = Project.search(1)
     @first = @all.delete_at(0)
+    @tags = Tag.all
   end
 
   def profile

@@ -1,7 +1,6 @@
 #
-# WaW 2009
+# Code Solo 2009
 #
-
 class User < ActiveRecord::Base
   has_many :binds
   has_many :projects, :through => :binds
@@ -11,7 +10,6 @@ class User < ActiveRecord::Base
   # has_many :friendships
   # has_many :friends, :through => :friendships #, :class_name => "User"
 
-  #has_many :addresses, :as => :addressable
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>", :thumb => "50x50>", :tiny => "32x32#" },
                     :whiny_thumbnails => true,
@@ -36,40 +34,15 @@ class User < ActiveRecord::Base
     c.validates_uniqueness_of_login_field_options :allow_blank => false
   end
 
-  def in_group?(group_or_id)
-    group_or_id = group_or_id.id if group_or_id.is_a?(Group)
-    groups.exists?(group_or_id)
-  end
 
-  def admin_of_group?(group_or_id)
-    group_or_id = group_or_id.id if group_or_id.is_a?(Group)
-    GroupsUsers.first(:group_id => group_or_id, :user_id => id).try(:admin?)
-  end
-
-  def self.create_from_bot(jid)
-    login = jid.stripped.to_s
-    if one = find_by_login(login)
-      one.get_affiliations(jid)
-      one.get_subscriptions
-    else
-
-     # acc = Domain.find_by_name(jid.domain).try(:account)
-      create!(:login => login, :on => true)#, :account => acc)
-    end
+  def owns?(project)
+    project.owners.include? self
   end
 
   def before_validation
     self.kind ||= :user
     self.time_zone ||= "Brasilia"
     self.locale ||= I18n.default_locale
-   # if self[:on]
-    #   self.email ||= self[:login]
-    #   gen = "SuNDodjaPas#{rand(10000)}"
-    #   unless self[:password]
-    #     self.password ||= gen
-    #     self.password_confirmation ||= gen
-    # #  end
-    # end
   end
 
   #after_post_process :iconize
@@ -85,14 +58,6 @@ class User < ActiveRecord::Base
     self.update_attribute(:state, :active)
   end
 
-  def city
-    addresses.first.try(:city).try(:name)
-  end
-
-  def self.fetch_all
-    puts "[USER] All!"
-   # AGENT.x all_user_xml("addbot#{rand(53131)}")
-  end
 
   def update_location(params)
     # point =  Point.from_x_y_z(params[:x], params[:y], params[:z])
