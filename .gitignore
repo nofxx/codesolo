@@ -1,0 +1,33 @@
+# Code Solo .gitignore
+#
+# Sys Files
+*~
+*#*#
+*.#*
+*.tmproj
+*.swp
+*_flymake.rb
+coverage/*
+.DS_Store
+thumbs.db
+.sass-cache
+*.tch
+*.tcb
+
+# Rails
+tmp/*
+log/*
+config/database.yml
+db/*.sqlite3
+db/development_structure.sql
+
+# Public
+public/files/users/*/**
+public/files/projects/*/**
+public/javascripts/cache
+public/stylesheets/cache
+
+# Extra
+rubyrun/*
+public/rubyrun_rss/*
+tags

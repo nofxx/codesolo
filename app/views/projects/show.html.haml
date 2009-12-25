@@ -1,0 +1,20 @@
+%h2= @project.to_param
+.gray= @project.owners.map(&:name).join(",")
+
+- content_tag_for :div, @project do
+  %ul
+    %li
+      %strong Name:
+      =h @project.name
+    %li
+      %strong Url:
+      =h @project.url
+    %li
+      %strong Todo:
+      =h @project.todo
+    %li
+      %strong Karma:
+      =h @project.karma
+%ul
+  %li= link_to 'Edit', edit_project_path(@project)
+  %li= link_to 'Back', projects_path

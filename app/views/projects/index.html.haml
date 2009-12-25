@@ -1,0 +1,26 @@
+.block
+  .content
+    %h2 Listing projects
+    - if !@projects.empty?
+      .inner
+        - for project in @projects
+          - content_tag_for :div, project do
+            %ol
+              %li.pubitem
+                %strong= link_to project.name, project
+              %li
+                %strong= project.karma
+              - if project.owners.include? current_user
+                = link_to 'Edit', edit_project_path(project)
+                = link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+              - else
+                = link_to 'Watch', watch_project_path(project), :method => :post
+      = will_paginate(@projects)
+    - else
+      %p There are no projects to show yet.
+
+
+- content_for :sidebar do
+  .block
+    - if current_user
+      = link_to 'New project', new_project_path

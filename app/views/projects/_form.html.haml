@@ -1,0 +1,17 @@
+- form_for(project) do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :url
+    %br
+    = f.text_field :url
+    Only github info fetching for now.
+  %p
+    = f.label :todo
+    %br
+    = f.text_field :todo
+    Defaults to project URL/issues
+  = save_or_cancel(f)

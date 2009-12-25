@@ -1,0 +1,41 @@
+- content_for :foot do
+  =# javascript_include_tag "location"
+
+.block
+  .content
+    %h2.title Spotlight
+    .inner.form
+    .inner
+      - if @first
+        %ol
+          %li.pub_item.latest= @first.name
+          - for item in @all
+            %li.pub_item= item.name
+      - else
+        No pubs.
+
+
+- content_for :sidebar do
+  .block
+    - if current_user
+      %h3= link_to "Places", "/places"
+      -# %table.user_grid
+      -# -  current_user.places.each_slice(5) do |slice|
+      -#   %tr
+      -#     - for place in slice
+      -#       = link_to image_tag(place.avatar.url(:tiny)), place
+
+
+  .block
+    .sidebar-block
+      %h4 Tags
+    .inner
+      %ul.navigation
+
+
+  .block.notice
+    %h4
+      Notice Title
+    %p
+      Morbi posuere urna vitae nunc. Curabitur ultrices, lorem ac aliquam
+

@@ -1,0 +1,36 @@
+.block
+  .content
+    - if @user
+      .inner
+        - unless @user.projects.empty?
+          - pubs = @user.pubs
+          %ol
+            %li.pub_item.latest= puts_pub(pubs.delete_at(0), true, true)
+            - for pub in pubs
+              %li.pub_item= puts_pub(pub)
+        - else
+          No pubs.
+    - else
+      #{params[:login]} is avaiable, wanna register it ?
+
+- content_for :sidebar do
+  .block
+    - if @user
+      %h2= @user.name
+      = link_to @user.name
+      .gray
+        = @user.motto
+      %ul
+        %li #{@user.projects.count} projects.
+    - if current_user == @user
+      %ul
+        %li
+          = image_tag "icons/pin.png"
+          = link_to 'New project!', new_project_path
+    - elsif @user
+      %ul
+        %li
+          = image_tag "icons/pin.png"
+          = link_to 'Follow user!', follow_user_path(@user)
+
+

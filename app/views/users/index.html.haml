@@ -1,0 +1,49 @@
+#block-tables.block
+  .content
+    %h2.title Users
+    .inner
+      %table.table
+        %thead
+          %tr
+            %th 
+            %th Login
+            %th Tipo
+            %th Nome
+            %th E-mail
+            %th Logins
+            %th{ :colspan => 2} Ações
+        %tbody
+          - for user in @users
+            %tr
+              %td= image_tag user.gravatar_url(:size => 50)
+              %td= link_to h(user.login), user
+              %td= user.kind_text
+              %td= h user.name
+              %td= h user.email
+              %td= user.login_count
+              %td= edit_link user
+              %td= destroy_link user
+      .actions-bar
+        .actions #{@users.length} User(s).
+        .pagination
+        .clear
+
+  = will_paginate @users
+
+- content_for :sidebar do
+  %h3 Menu
+  .content
+    %div.block
+      .content
+        %p
+          = image_tag "user--plus.png"
+          = link_to 'Novo usuário', new_user_path, :class => "icon new"
+        %p= link_to "Fetch!", fetch_all_users_path, :method => :post
+
+    .block
+      .sidebar-block
+        %h4 Estatísticas
+        %p
+          = count_as_text(User.logged_in.count, "Apenas você logado nos últimos 30 minutos", "%i usuários logados nos últimos 30 minutos", "Já peguei teu IP fdp :)")
+        - for user in User.logged_in
+          %p= link_to h("#{user.login}(#{user.name})"), user

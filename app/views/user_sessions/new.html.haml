@@ -1,0 +1,40 @@
+#box
+  .block
+    %h2
+      Login
+    .content.login
+      - form_for UserSession.new, :url => user_session_path, :html => {:class => "form" } do |f|
+        = f.error_messages
+        .group
+          .left
+            = f.label :login
+          .right= f.text_field :login
+          .clear
+        .group
+          .left
+            = f.label :password
+          .right= f.password_field :password
+          .clear
+        .group
+          .left
+            = f.label :remember?
+          .right= f.check_box :remember_me
+          .clear
+        .group
+          .left
+            = f.label "Login from facebook"
+          .clear
+        .group.navform
+          .left
+            %input.button{ :type => "submit", :value => "Create a new account" }
+          .right
+            %input.button{ :type => "submit", :value => "Login" }
+          .clear
+#box
+  .block
+    %h2
+      Login from facebook
+#box
+  .block
+    %h2
+      Login from twitter

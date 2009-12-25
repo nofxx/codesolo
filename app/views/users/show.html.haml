@@ -1,0 +1,18 @@
+.block
+  .content
+    %h2.title= @user.login
+    .inner
+      .left
+        = show_for @user, [:login, :login_count]
+      .right
+        %h3 Roster
+        %h3 Subscriptions
+        - for sub in @user.subs
+          = link_to sub.pub.name, sub.pub
+      -# - for contact in @user.contacts
+      -#   %p= contact.value
+      -# %h3 Contatos
+      -# - for contact in @user.contacts
+      -#   %p= contact.value
+    .clear
+    = show_links

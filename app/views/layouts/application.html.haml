@@ -1,0 +1,36 @@
+!!! Transitional
+%head
+  %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }/
+  %title= "Code Solo - #{controller.controller_name.upcase}"
+  //= bundle :name => 'defaults' do
+  = stylesheet_link_tag "reset", "typography", "forms", "base", :cache => "cache/cssall"
+  = javascript_include_tag "jquery", :cache => "cache/jsall"
+  = yield :head
+  %link{ :href => "/images/favicon.png", :rel => "shortcut icon" }/
+%body
+  #container
+    #header
+      %h1= link_to "Code Solo", "/"
+      #user-navigation
+        %ul
+          %li= link_to "Home", "/"
+          %li= link_to "Projects", "/projects"
+          - if current_user
+            %li= link_to "Profile", "/#{current_user.login}"
+            %li= link_to "Logout", "/logout", :class => "red"
+          - else
+            %li= link_to "Login", "/login"
+            %li= link_to "Join!", "/signup", :class => "red"
+        .clear
+    #wrapper
+      - sidebar = yield(:sidebar) || nil
+      - if sidebar
+        #sidebar= sidebar
+      #main= yield
+    .clear
+    #footer
+      .block
+        %p
+          Copyright &copy; 2009 Fireho.
+
+= yield :foot

@@ -1,0 +1,5 @@
+%h2 Editing project
+= render :partial => "form", :locals => {:project => @project}
+%ul
+  %li= link_to 'Show', @project
+  %li= link_to 'Destroy', @project, :confirm => 'Are you sure?', :method => :delete
