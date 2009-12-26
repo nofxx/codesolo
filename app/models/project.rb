@@ -4,13 +4,13 @@ class Project < ActiveRecord::Base
   # Using search because repo info doesn't have all the info =/
   GH_URL = "http://github.com/api/v2/yaml/repos/search"
 
-  has_many :binds
+  has_many :binds, :dependent => :destroy
   has_many :users, :through => :binds
 
-  has_many :taggings, :as => :taggable
+  has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
 
-  has_many :pubs
+  has_many :pubs, :dependent => :destroy
 
   validates_presence_of :name
   validates_presence_of :url

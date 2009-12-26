@@ -3,7 +3,7 @@
     %h2.title Projects
     - if !@projects.empty?
       = p @projects
-      .inner= render "list", :collection => @projects
+      .inner= render "list"
       = will_paginate(@projects)
     - else
       %p There are no projects to show yet.

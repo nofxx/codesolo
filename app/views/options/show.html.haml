@@ -9,6 +9,9 @@
             = f.label :name
             = f.text_field :name
           .group
+            = f.label :email
+            = f.text_field :email
+          .group
             = f.label :motto
             = f.text_field :motto
           .group
@@ -17,16 +20,13 @@
           .group
             = f.label :password_confirmation
             = f.password_field :password_confirmation
-        .right
-          .group
-            = f.label :url
-            = f.text_field :url
-          .group
-            = f.label "Avatar"
-            = f.file_field :avatar
           .group
             = f.label :time_zone
             = f.time_zone_select :time_zone, /Brasilia/
+          .group
+            = f.label "Avatar"
+            = f.file_field :avatar
+        .right
           .group
             = f.label :language_select
             = language_select

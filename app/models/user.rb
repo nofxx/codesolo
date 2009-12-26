@@ -2,12 +2,12 @@
 # Code Solo 2009
 #
 class User < ActiveRecord::Base
-  has_many :binds
+  has_many :binds, :dependent => :destroy
   has_many :projects, :through => :binds
-  has_many :contacts, :as => :contactable
-  has_many :taggings, :as => :taggable
+  has_many :contacts, :as => :contactable, :dependent => :destroy
+  has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
-  has_many :pubs
+  has_many :pubs, :dependent => :destroy
   # has_many :friendships
   # has_many :friends, :through => :friendships #, :class_name => "User"
 

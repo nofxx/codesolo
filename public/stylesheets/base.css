@@ -61,15 +61,16 @@ body {
   min-width: 960px; }
 
 #header {
-  background: #eaeaea;
   position: relative;
-  padding-top: 1px; }
+  padding-top: 1px;
+  border-bottom: 1px solid #ccc; }
   #header h1 {
-    margin: 0;
-    padding: 10px 0;
-    font-size: 30px; }
+    font-weight: bold;
+    font-size: 20px;
+    padding: 7px 6px 5px 10px;
+    margin: 0px 0px 5px 0px; }
     #header h1 a:link, #header h1 a:active, #header h1 a:hover, #header h1 a:visited {
-      color: #3a3a3a;
+      color: #666;
       text-decoration: none; }
 
 .actions-bar {
@@ -263,11 +264,6 @@ p {
 
 f.checkbox {
   vertical-align: middle; }
-
-#header h1 {
-  font-size: 20px;
-  padding: 7px 0px 9px 0px;
-  margin: 0px 0px 5px 0px; }
 
 .small {
   font-size: 11px; }
