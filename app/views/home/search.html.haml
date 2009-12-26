@@ -1,0 +1,10 @@
+.block
+  .content
+    %h2.title Projects
+    Searching for "#{params[:q]}"
+    - if !@projects.empty?
+      .inner= render :partial => "projects/list", :collection => @projects
+      = will_paginate(@projects)
+    - else
+      %p There are no projects to show yet.
+  = will_paginate @projects

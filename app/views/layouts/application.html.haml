@@ -3,8 +3,8 @@
   %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }/
   %title= "Code Solo - #{controller.controller_name.upcase}"
   //= bundle :name => 'defaults' do
-  = stylesheet_link_tag "reset", "typography", "forms", "base", :cache => "cache/cssall"
-  = javascript_include_tag "jquery", :cache => "cache/jsall"
+  = stylesheet_link_tag "reset", "typography", "base", :cache => "cache/cssall"
+  = javascript_include_tag "jquery", "app", :cache => "cache/jsall"
   = yield :head
   %link{ :href => "/images/favicon.png", :rel => "shortcut icon" }/
 %body

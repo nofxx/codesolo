@@ -1,0 +1,15 @@
+- for project in @projects
+  - content_tag_for :div, project do
+    %ol
+      %li.pubitem
+        %h3= link_to project.name, project
+        = show_tags(project)
+      %li
+        %strong (#{project.karma}) #{project.todos} TODOs #{project.forks} forks, #{project.watchers} watchers.
+      %span.gray Last update #{time_ago_in_words(project.updated_at)}
+      = project.info
+      - if project.owners.include? current_user
+        = link_to 'Edit', edit_project_path(project)
+        = link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+      - else
+        = link_to 'Watch', watch_project_path(project), :method => :post

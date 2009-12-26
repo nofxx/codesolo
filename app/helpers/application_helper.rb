@@ -16,11 +16,17 @@ module ApplicationHelper
     end + "</span>"
   end
 
-  def tag_cloud
-    Tag.all.inject("<div class='cloud'>") do |str, tag|
-      str += "<a href='/#{tag.name}'>#{tag.name}</a> "
+  def tag_cloud(tags = Tag.all)
+    counts = tags.map(&:count)
+    max, min = counts.max, counts.min
+    divisor = ((max - min) / 6) + 1
+
+    tags.inject("<div class='cloud'>") do |str, tag|
+
+      str += "<a href='/#{tag.name}' class='cloud#{(tag.count - min) / divisor}'>#{tag.name}</a> "
     end + "</div>"
   end
+
 
   def puts_pub(pub, avatar=false, latest=false)
     out = ""
@@ -113,19 +119,12 @@ module ApplicationHelper
     out % num
   end
 
-  def search(*args)
-    opts = { :controller => controller.controller_name, :action => :index, :msg => "", :forceMsg => false, :searchInUrl => false }.
-      update(args.extract_options!)
-    url = opts.delete :url || url_for(:controller => opts[:controller], :action => opts[:action])
-    opts[:msg] = params[:search] if not params[:search].nil? and not params[:search].empty? and opts[:forceMsg] == false
-
-    out  = "<div class='block'><h3>Busca</h3>"
-    out += "<form method='GET' action='#{url}' class='search' id='sidebar_search'>"
-    out += "<input type='text' value='#{h(opts[:msg])}' id='search' name='search' />"
-    out += '<input type="submit" value="" id="searchbutton" class="icons" />'
+  def search(msg, url)
+    out  = "<div class='wrap'>"
+    out += "<form method='GET' action='/search' class='search' id='sidebar_search'>"
+    out += "<span class='wrap'><input type='text' value='#{msg}' id='search' name='search' />"
+    out += '<input type="submit" value="" id="searchbutton" class="icons" /></span>'
     out += '</form>'
-    out += javascript_tag "$('input#search').textmask()" unless opts[:msg].empty?
-    out += javascript_tag "$('form#sidebar_search').searchInUrl('input#search');" if opts[:searchInUrl]
     out += "</div>"
   end
 

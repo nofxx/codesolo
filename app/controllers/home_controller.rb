@@ -22,6 +22,7 @@ class HomeController < ApplicationController
   end
 
   def search
+    @projects = Project.search(params[:page], params[:q])
 
   end
 

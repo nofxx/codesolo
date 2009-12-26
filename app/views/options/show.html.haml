@@ -1,7 +1,6 @@
 .block
   .content
     %h2.title Options
-    = image_tag @user.avatar.url(:medium)
     .inner
       - form_for @user, :url => { :action => "update" }, :html => {:multipart => true, :class => "form"} do |f|
         = f.error_messages
@@ -40,4 +39,5 @@
   .block
     %h3= @user.login
     %ul.navigation
+      = image_tag @user.avatar.url(:medium) if @user.avatar
       %li= link_to current_user.email, "/options"

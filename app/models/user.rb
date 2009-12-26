@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
                     :styles => { :medium => "300x300>", :thumb => "50x50>", :tiny => "32x32#" },
                     :whiny_thumbnails => true,
                     :default_style => :thumb,
-                    :default_url => "avatar/default.png",
+                    :default_url => "layout/avatar.png",
                     :path => ":rails_root/public/files/users/avatars/:style_:id.:extension",
                     :url => "/files/users/avatars/:style_:id.:extension"
 
@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
 
   def activate!
     self.update_attribute(:state, :active)
+  end
+
+  def get_all_projects
+    # curl -i http://github.com/api/v1/json/#{login}
   end
 
 

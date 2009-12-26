@@ -16,6 +16,8 @@ Rails::Initializer.run do |config|
   config.gem "ruby-openid", :lib => "openid"
   config.gem "will_paginate"
   config.gem "paperclip"
+  config.gem "octopi"
+  config.gem "api_cache", :lib => false
   config.gem "nofxx-symbolize", :lib => "symbolize"
 
   # config.load_paths += %W( #{RAILS_ROOT}/extras )

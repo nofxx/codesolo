@@ -5,6 +5,14 @@
   margin: 0
   padding: 0
 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, img, small, strike, strong, em, sub, sup, tt, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td
+  margin: 0
+  padding: 0
+  border: 0
+  font-size: 100%
+  font-family: inherit
+  text-align: left
+
 .clear
   clear: both
   height: 0
@@ -38,6 +46,15 @@ a img
 body
   font-size: 12px
   font-family: sans-serif
+  background: #fff
+  font-size: 13px
+  line-height: 18px
+  color: #555
+  margin: 0
+  padding: 0
+  color: #333
+  background: #F3F3F3
+  font: normal 12px/1.5em "Lucida Grande", "Helvetica Neue", Arial, sans-serif
 
 #container
   min-width: 960px
@@ -46,6 +63,7 @@ body
   padding: 0 20px
 
 #header
+  background: #eaeaea
   position: relative
   padding-top: 1px
   h1
@@ -54,6 +72,7 @@ body
     font-size: 30px
     a
       &:link, &:active, &:hover, &:visited
+        color: #3a3a3a
         text-decoration: none
 
 .actions-bar
@@ -64,39 +83,8 @@ body
     float: right
     padding: 1px 0
 
-
-#sidebar
-  width: 30%
-  float: right
-  h3
-    padding: 10px 15px
-    margin: 0
-    font-size: 13px
-  .block
-    margin-bottom: 20px
-    padding-bottom: 10px
-    .content
-      padding: 0 15px
-  ul.navigation li a
-    &:link, &:visited
-      display: block
-      padding: 10px 15px
-  .block .sidebar-block, .notice
-    padding: 10px
-
 #wrapper
   padding-top: 20px
-
-#main
-  .block
-    margin-bottom: 20px
-    padding-top: 1px
-    .content .inner
-      padding: 0 15px 15px
-      .body
-
-  .main p.first
-    margin-top: 0
 
 
 #user-navigation
@@ -107,9 +95,6 @@ body
 
 #main-navigation
   width: 100%
-
-#main ul
-  list-style-type: none
 
 #user-navigation ul, #main-navigation ul, .secondary-navigation ul, #sidebar ul.navigation
   margin: 0
@@ -201,9 +186,6 @@ body
       text-align: right
 
 
-input.checkbox
-  margin: 0
-  padding: 0
 
 .left
   float: left
@@ -226,39 +208,19 @@ input.checkbox
   .columns
     .column
       width: 48%
-
-
-  label, input.text_field, textarea.text_area
-    font-size: 1.2em
-    padding: 1px 0
-    margin: 0
-
   label.right
     text-align: right
-
   input
     &.checkbox, &.radio
       margin-right: 5px
-
   label
     &.checkbox, &.radio
       line-height: 1.5em
-
-    &.label
-      display: block
-      padding-bottom: 2px
-      font-weight: bold
-
   div.fieldWithErrors label.label
     display: inline
-
   .fieldWithErrors .error
     color: red
 
-  input.text_field, textarea.text_area
-    width: 100%
-    border-width: 1px
-    border-style: solid
 
 
 ul.list
@@ -323,14 +285,8 @@ a
     color: #d30
 
 
-h1, h2, h3
-  color: #444
 
 
-body
-  color: #333
-  background: #EBEBEB
-  font: normal 12px/1.5em "Lucida Grande", "Helvetica Neue", Arial, sans-serif
 
 hr
   background: #aaa
@@ -361,65 +317,57 @@ f.checkbox
   font-size: 0.8em
   color = !light_gray
 
-#header
-  background: #232C30
-
-  h1 a
-    &:link, &:active, &:hover, &:visited
-      color: #eaeaea
 
 #main
   width: 68%
   float: left
-  background: #EBEBEB
-
   .block
     -moz-background-clip: border
     -moz-background-inline-policy: continuous
     -moz-background-origin: padding
-    background: #FFFFFF none repeat scroll 0 0
-    border: 1px solid #B4AC99
+    background: #eaeaea none repeat scroll 0 0
+    border: 1px solid #cacaca
     margin-bottom: 24px
     margin-left: 5px
     margin-right: none
     padding: 3px
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2)
-
-
     .content
       border-left: 1px solid #ddd
       border-top: 1px solid #ddd
       border-bottom: 1px solid #ccc
       border-right: 1px solid #ccc
-      background: #efefef
-
+      background: #fefefe
+      .inner
+        margin: 8px
     h2.title
       margin: 10px 0 5px 0
       background-color: none
       padding: 5px 5px 15px 15px
       margin-bottom: 15px
-      font-size: 18px
-      color: #456
+      font-size: 20px
+      color: #444
       border-bottom: 1px solid #eee
-
 
 .main_container
   padding: 10px
 
 
 
-#footer
-  background-color: #ddd
-  padding: 10px
-  color: #888
-  .block
-    font-size: 11px
-    background-color: #ddd
-    padding: 0 10px
-    text-align: right
-
-
 #sidebar
+  width: 30%
+  float: right
+  .block
+    margin-bottom: 20px
+    padding-bottom: 10px
+    .content
+      padding: 0 15px
+  ul.navigation li a
+    &:link, &:visited
+      display: block
+      padding: 10px 15px
+  .block .sidebar-block, .notice
+    padding: 10px
   .notice
     background-color: #ffc
     padding: 0 10px
@@ -427,27 +375,20 @@ f.checkbox
     border-right: 1px solid #ddd
     border-top: 1px solid #fff
     border-left: 1px solid #fff
-
     h2
       font-size: 16px
       margin: 5px 0
       border-bottom: 1px solid #456
-
     p
       font-size: 12px
-
   .block
     padding-bottom: 0
-
     .content
       padding: 0 10px
-
   h3
-    background: #efefef
+    margin: 0
+    font-size: 13px
     border-bottom: 1px solid #bbb
-    border-right: none
-    border-left: none
-    border-top: none
     padding: 5px 10px
     color: #333
     font-weight: bold
@@ -456,26 +397,21 @@ f.checkbox
     li a
       &:link, &:visited
         font-size: 12px
-
       &:hover, &:active
         background: none
         color: #444
         font-size: 12px
         text-decoration: underline
-
     &.navigation li
       &.last a
         border-bottom: none
-
       a
         &:link, &:visited
           padding: 5px 10px
           color: #6a6a6a
           text-decoration: none
-
         &:hover
           text-decoration: underline
-
   .block .sidebar-block h4
     border-bottom: 1px dotted #aaa
 
@@ -486,22 +422,18 @@ f.checkbox
   color: #eee
   border-top-left-radius: 5px
   border-top-right-radius: 5px
-
   &:hover
     border-top-color: #7593B0
     background-color: #576C82 !important
     color: #fff
-
   &.active
     border-top: 1px solid #fff
     background-color: #eee !important
     color: #333
-
   a
     &:link, &:visited, &:hover, &:active
       text-decoration: none
       color: #FFF
-
 
 .secondary-navigation ul li a
   &:link, &:visited, &:hover, &:active
@@ -512,12 +444,11 @@ f.checkbox
 #user-navigation ul li a
   &:link, &:visited, &:hover, &:active
     text-decoration: none
-    color: #FFF
+    color: #3a3a3a
   &:link, &:visited
-    color: #CDE
-    border-bottom: 1px dotted #345
+    color: #3a3a3a
   &:hover
-    color: #fff
+    color: #6a6a6a
     border-bottom: 1px dotted #CDE
     text-decoration: none
   &.red
@@ -610,13 +541,6 @@ f.checkbox
 
 
 .form
-  input.text, textarea.textarea
-    border: 1px solid #ddd
-    padding: 5px
-    width: 99%
-    font-size: 1.5em
-
-
   .navform
     padding: 10px
     background-color: #eee
@@ -627,19 +551,6 @@ f.checkbox
     border-left: 1px solid #eee
     text-align: right
 
-    input
-      font-size: 14px
-
-input, textarea
-  border: 1px solid #ddd
-  border-top: 2px solid #ccc
-  border-left: 2px solid #ccc
-  background-color: white
-  color: #444
-  -moz-border-radius: 3px
-  -webkit-border-radius: 3px
-  font-size: 1.5em
-  width: 99%
 
 .button
   width: 30%
@@ -665,9 +576,6 @@ input, textarea
   text-shadow:1px 1px 1px rgba(255, 255, 255, 0.2)
 
 
-
-
-
 .description
   color: #aaa
   font-family: Georgia, serif
@@ -680,18 +588,14 @@ input, textarea
     text-align: center
     margin: 0 auto 5px
     width: 80%
-
     p
       margin: 8px
-
   .error
     border: 1px solid #fbb
     background-color: #fdd
-
   .warning
     border: 1px solid #fffaaa
     background-color: #ffffcc
-
   .notice
     border: 1px solid #ddf
     background-color: #eef
@@ -699,11 +603,9 @@ input, textarea
 
 ul.list li
   border-bottom-color: #F0F0EE
-
   .item .avatar
     border-color: #F0F0EE
     margin: 3px 10px 0 0
-
   .left
     padding: 5px 5px
 
@@ -712,7 +614,6 @@ ul.list li
   background: #FFF
   border: 1px solid #ddd
   border-radius: 10px
-
   h2
     background: #576C82
     color: #FFF
@@ -841,3 +742,305 @@ table.user_grid tr td
   font-size: 1.2em
   font-weight: bold
   color = !med_gray
+
+
+html, body
+  margin: 0
+  padding: 0
+
+
+
+
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+
+ol, ul
+  list-style: none
+
+
+
+h1
+  color: #000
+  font-size: 30px
+  letter-spacing: .04em
+  margin: 10px 0 20px 0
+
+
+h2
+  color: #555
+  font-size: 18px
+  letter-spacing: .02em
+  margin: 20px 0 16px
+
+
+a
+  color: #008fc5
+
+
+#splash_header
+  margin: 20px auto 0
+  width: 350px
+
+
+#welcome
+  float: left
+  width: 200px
+  text-align: left
+
+
+#sign_in
+  float: right
+
+
+#splash
+  -moz-border-radius: 7px
+  -webkit-border-radius: 7px
+  border: 1px solid #ddd
+  margin: 20px auto
+  padding: 20px
+  position: relative
+  width: 350px
+
+
+#splash_success
+  margin: 50px auto
+  width: 500px
+
+  h1
+    text-align: center
+
+  p
+    margin: 20px 20px 0
+    text-align: center
+
+
+#splash_signin
+  -moz-border-radius: 7px
+  -webkit-border-radius: 7px
+  border: 1px solid #ddd
+  margin: 100px auto 20px
+  padding: 20px
+  position: relative
+  width: 325px
+
+
+#g_bubble
+  position: absolute
+  right: 15px
+
+
+#splash_footer
+  font-size: 11px
+  text-align: center
+
+
+p
+  &.warning, &.error, &.success, &.info
+    margin: 30px 0 15px
+    padding: 4px 9px
+    color: #fff
+    font-size: 12px
+
+  &.warning a, &.error a, &.success a, &.info a
+    color: #fff
+    font-weight: bold
+    text-decoration: none
+
+  &.warning a:hover, &.error a:hover, &.success a:hover, &.info a:hover
+    text-decoration: underline
+
+  &.error
+    background-color: #df4729
+    color: #fff
+
+    strong
+      color: #fff
+
+    small
+      color: #930
+
+label
+  font-weight: bold
+
+
+fieldset
+  padding: 1.4em
+  margin: 0 0 1.5em 0
+  border: 1px solid #ccc
+
+
+legend
+  font-weight: bold
+  font-size: 1.2em
+
+
+
+
+
+input
+  &[type=checkbox], &[type=radio], &.checkbox, &.radio
+    position: relative
+    top: .25em
+
+
+form.inline
+  line-height: 3
+
+  p
+    margin-bottom: 0
+
+
+.error, .notice, .success
+  padding: .8em
+  margin-bottom: 1em
+  border: 2px solid #ddd
+
+
+.error
+  background: #FBE3E4
+  color: #8a1f11
+  border-color: #FBC2C4
+
+
+.notice
+  background: #FFF6BF
+  color: #514721
+  border-color: #FFD324
+
+
+.success
+  background: #E6EFC2
+  color: #264409
+  border-color: #C6D880
+
+
+.error a
+  color: #8a1f11
+
+
+.notice a
+  color: #514721
+
+
+.success a
+  color: #264409
+
+label
+  display: block
+  font-size: 18px
+  font-weight: normal
+  line-height: 24px
+  cursor: pointer
+  color: #777
+  margin-bottom: 8px
+
+input, select
+  &[type=text], &[type=file], &[type=password], &.text, &.title, &.file
+    background: url('/images/layout/input_bg.png') no-repeat #fff
+    margin: 0
+    padding: 5px 6px
+    border: 1px solid #ccc
+    border: solid 1px #e0e0e0
+    -webkit-border-radius: 3px
+    -moz-border-radius: 3px
+    font-size: 1.3em
+    width: 89%
+
+textarea
+  display: block
+  background: url(/../../images/layout/input_bg.png) no-repeat #fff
+  margin: 0
+  padding: 5px 6px
+  border: 1px solid #ccc
+  font: 15px/21px Helvetica Neue,"Arial",Helvetica,Verdana,sans-serif
+  border: solid 1px #e0e0e0
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
+
+
+form
+  input.input-text:focus, textarea:focus
+    outline: none
+    border-color: #41b5d4
+    border-width: 2px
+    margin: -1px
+
+.project
+  display: block
+  margin: 14px
+  padding: 3px
+  position: relative
+  border-bottom: 1px solid #eee
+
+span.wrap
+  display: block
+  margin: 0 0 14px
+  padding: 0px
+  line-height: 1
+  position: relative
+  *
+    vertical-align: top
+  small
+    font-size: 12px
+    color: #666
+    line-height: 18px
+    padding: 3px 10px 0 2px
+    position: relative
+    top: 4px
+  img
+    float: left
+    margin-right: 10px
+
+input.medium, textarea.medium
+  width: 325px
+
+input.large
+  width: 350px
+
+textarea.large
+  width: 350px
+  height: 140px
+
+input.fluid, textarea.fluid
+  width: 680px
+
+input.full, textarea.full
+  width: 98%
+  display: block
+
+input.checkbox
+  margin: 0
+  padding: 0
+
+#footer
+  padding: 10px
+  color: #888
+  border-top: 1px solid #ddd
+  .block
+    text-align: right
+    font-size: 11px
+    padding: 0 10px
+
+.cloud1
+  font-size: 1em
+.cloud2
+  font-size: 1.2em
+.cloud3
+  font-size: 1.4em
+.cloud4
+  font-size: 1.6em
+.cloud5
+  font-size: 1.8em
+.cloud6
+  font-size: 2em
+
+body
+  :text-align center
+
+#wrapper
+  :width 800px
+  :text-align left
+  :margin auto

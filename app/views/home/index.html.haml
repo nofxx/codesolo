@@ -3,6 +3,21 @@
 
 .block
   .content
+    %h2.title I want to:
+    .inner.form
+      .left
+        .msearch
+          - form_tag "/search", :method => 'get' do
+            = text_field_tag :q, 'Code in..', :id => :search
+            = image_tag "magnifier.png"
+      .right
+        or
+        %strong= link_to "Register my project", new_project_path
+    .clear
+    .inner= tag_cloud
+
+.block
+  .content
     %h2.title Spotlight
     .inner.form
     .inner
@@ -12,7 +27,7 @@
             %li.pub_item.latest
               = link_to item.name, item
               (#{skill_text(item.skill)} - #{item.devs})
-              %span.gray (#{item.karma})
+              %span.gray #{item.info}
               = show_tags(item)
       - else
         No projects?
@@ -35,11 +50,4 @@
       -#   %tr
       -#     - for project in slice
       -#       = link_to image_tag(project.avatar.url(:tiny)), project
-
-  .block
-    .sidebar-block
-      %h4 Tags
-    .inner
-      %ul.navigation= tag_cloud
-
 

@@ -1,33 +1,30 @@
 - form_for(project, :html => {:class => :form}) do |f|
   = f.error_messages
   .left
-    %p
+    %span.wrap
       = f.label :name
-      %br
       = f.text_field :name
-    %p
+    %span.wrap
       = f.label :url
-      %br
       = f.text_field :url
-      Skip this if your login is the same as github.
-      Only github info fetching for now.
-    %p
+      %small Skip this if your login is the same as github.  Only github info fetching for now.
+    %span.wrap
       = f.label :todo
-      %br
       = f.text_field :todo
-      Defaults to project URL/issues.
-    %p
+      %small Defaults to project URL/issues.
+    %span.wrap
       = f.label :tags_text
-      %br
       = f.text_field :tags_text
-      Languages & Technologies used
+      %small Languages & Technologies used
+    %span.wrap
+      = f.label :info
+      = f.text_area :info, :size => "53x6"
   .right
-    %p
+    %span.wrap
       = f.label :devs
-      %br
       = f.text_field :devs
-      Active developers
-    %p
+      %small Active developers
+    %span.wrap
       = skill_select(f)
   .clear
   = save_or_cancel(f)

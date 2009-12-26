@@ -1,7 +1,8 @@
 class Project < ActiveRecord::Base
 
   PROJECTS_PER_PAGE = 20
-  GH_URL = "http://github.com/api/v2/yaml/repos/show"
+  # Using search because repo info doesn't have all the info =/
+  GH_URL = "http://github.com/api/v2/yaml/repos/search"
 
   has_many :binds
   has_many :users, :through => :binds
@@ -46,16 +47,15 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def self.search(page)
-    paginate(:page => page, :per_page => PROJECTS_PER_PAGE, :order => "karma DESC")
-  end
-
-  def split_url
-    url.split("/")
+  def self.search(page, search = nil)
+    args = {:page => page, :per_page => PROJECTS_PER_PAGE, :order => "karma DESC"}
+    args.merge!(:conditions => ['info like ?', "%#{search}%"]) if search
+    paginate(args)
   end
 
   def gh_id
-    "#{split_url[-2]}/#{split_url[-1]}"
+    repo, user = url.split("/").reverse
+    { :name => repo, :user => user}
   end
 
   def is_set?(v)
@@ -64,13 +64,15 @@ class Project < ActiveRecord::Base
 
   def fetch_github
     begin
-      data = YAML.load(`curl #{GH_URL}/#{gh_id}`)["repository"]
-      self.name ||= data[:name]
-      self.info = data[:description] unless is_set?(self.info)
-      #self.fork ||= data[:fork]
-      self.attributes =  {:todos => data[:open_issues],
-                          :forks  => data[:forks],
-                          :watchers => data[:watchers]}
+     p repo = Octopi::Repository.find(gh_id)
+      self.name ||= repo.name
+      self.info = repo.description unless is_set?(info)
+      self.attributes =  {:todos => repo.open_issues,
+                          :forks  => repo.forks,
+                          :watchers => repo.watchers}
+      tags_text = (repo.tags << repo.language).join(" ")
+      # repo.pledgie
+      self.synced_at = repo.pushed
     rescue => e
       puts "GH fetch fail #{e}" + e.backtrace.join("\n")
     end

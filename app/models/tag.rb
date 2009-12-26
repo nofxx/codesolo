@@ -1,8 +1,8 @@
 class Tag < ActiveRecord::Base
-
   has_many :taggings
 
   validates_presence_of :name
+  validates_uniqueness_of :name
 
   # im sure there a better way
   def projects
@@ -11,6 +11,10 @@ class Tag < ActiveRecord::Base
 
   def up!
 
+  end
+
+  def count
+    taggings.count
   end
 
 end
