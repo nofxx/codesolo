@@ -2,7 +2,8 @@
   .content
     %h2.title Projects
     - if !@projects.empty?
-      .inner= render :partial => "list", :collection => @projects
+      = p @projects
+      .inner= render "list", :collection => @projects
       = will_paginate(@projects)
     - else
       %p There are no projects to show yet.

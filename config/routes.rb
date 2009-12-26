@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   # Root home controller
   map.root :controller => 'home', :action => 'index'
 
-  map.resources :projects, :member => { :watch => :post }
+  map.resources :projects, :member => { :help => :post, :watch => :post }
   map.resources :pubs
   map.resources :tags
 

@@ -9,8 +9,8 @@
         .msearch
           - form_tag "/search", :method => 'get' do
             = text_field_tag :q, 'Code in..', :id => :search
-            = image_tag "magnifier.png"
       .right
+        = image_tag "magnifier.png"
         or
         %strong= link_to "Register my project", new_project_path
     .clear

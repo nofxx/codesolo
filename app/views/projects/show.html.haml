@@ -1,48 +1,44 @@
 .block
   .content
     %h2.title= @project.name
-    %strong= link_to @project.url, @project.url
-    .gray= @project.owners.map(&:name).join(",")
+    .inner
+      %p= @project.info
+      %strong= link_to @project.url, @project.url
+      .gray= @project.users.map(&:name).join(",")
 
-    %h3 Talks
-    - if current_user
-      - form_for Pub.new do |f|
-        = f.hidden_field :project_id, :value => @project.id
-        = f.text_field :body
-        = f.submit "Send"
+      %h3 Talks
+      - if current_user
+        - form_for Pub.new do |f|
+          = f.hidden_field :project_id, :value => @project.id
+          = f.text_field :body, :autocompletion => :off
+          = f.submit "Send"
+      - else
+        Log in to chat.
 
-    - for pub in @project.pubs
-      %p= puts_pub(pub)
+      - for pub in @project.pubs
+        %p= puts_pub(pub)
 
 - content_for :sidebar do
   - content_tag_for :div, @project do
     %ul
       %li
-        %strong Devs:
-        =h @project.devs
+        %span.pplwork=h @project.devs
+        dev(s)
       %li
-        %strong Skill:
-        = skill_text(@project.skill)
+        %strong= skill_text(@project.skill)
       %li
-        %strong Todo:
-        = link_to @project.todo, @project.todo
-      %li
-        %strong Karma:
-        =h @project.karma
-      %li
-        %strong TODOs:
-        = @project.todos
-      %li
-        %strong Forks:
-        = @project.forks
-      %li
-        %strong Watchers:
-        = @project.watchers
-      %p
-        = @project.info
+        %strong= @project.karma
+        Karma,
+        %strong= @project.forks
+        Forks,
+        %strong= @project.watchers
+        Watchers
+
+    %h3 Todos (#{@project.todos})
+    = link_to @project.todo, @project.todo
 
     %h3 Tags
-    = show_tags(@project)
+    = @project.tags.empty? ? "No tags, add some!" : show_tags(@project)
 
   %ul
     %li= link_to 'Edit', edit_project_path(@project) if current_user && current_user.owns?(@project)

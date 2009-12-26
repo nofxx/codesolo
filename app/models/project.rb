@@ -48,8 +48,8 @@ class Project < ActiveRecord::Base
   end
 
   def self.search(page, search = nil)
-    args = {:page => page, :per_page => PROJECTS_PER_PAGE, :order => "karma DESC"}
-    args.merge!(:conditions => ['info like ?', "%#{search}%"]) if search
+    args = {:page => page, :per_page => PROJECTS_PER_PAGE, :order => "projects.karma DESC"}
+    args.merge!(:conditions => ['projects.info like ?', "%#{search}%"]) if search
     paginate(args)
   end
 

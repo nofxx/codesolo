@@ -57,6 +57,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def help
+    respond_to do |format|
+      if @project.binds.new(:user => current_user, :kind => :dev).save
+        @project.increment(:karma, 5)
+        @project.increment(:devs)
+        @project.save
+      end
+      format.html { redirect_to projects_path }
+      format.xml  { render :xml => @project, :status => :created, :location => @project }
+    end
+  end
+
   def new
     @project = Project.new
     respond_to do |format|
