@@ -60,9 +60,6 @@ body {
 #container {
   min-width: 960px; }
 
-#header, #wrapper {
-  padding: 0 20px; }
-
 #header {
   background: #eaeaea;
   position: relative;
@@ -184,7 +181,7 @@ body {
 .form div.right {
   width: 31%;
   float: right; }
-.form .columns .column {
+.form div .column {
   width: 48%; }
 .form label.right {
   text-align: right; }
@@ -219,10 +216,16 @@ ul.list {
 
 #box {
   width: 500px;
-  margin: 50px auto; }
+  margin: auto; }
   #box .block {
-    margin-bottom: 20px; }
+    background: #FFF;
+    border: 1px solid #ddd;
+    border-radius: 10px; }
     #box .block h2 {
+      color: #FFF;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      margin-bottom: 20px;
       padding: 10px 15px;
       margin: 0; }
     #box .block .content {
@@ -278,36 +281,37 @@ f.checkbox {
   font-size: 0.8em;
   color: #aaaaaa; }
 
-#main {
+.mainleft {
   width: 68%;
   float: left; }
-  #main .block {
-    -moz-background-clip: border;
-    -moz-background-inline-policy: continuous;
-    -moz-background-origin: padding;
-    background: #eaeaea none repeat scroll 0 0;
-    border: 1px solid #cacaca;
-    margin-bottom: 24px;
-    margin-left: 5px;
-    margin-right: none;
-    padding: 3px;
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2); }
-    #main .block .content {
-      border-left: 1px solid #ddd;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-      background: #fefefe; }
-      #main .block .content .inner {
-        margin: 8px; }
-    #main .block h2.title {
-      margin: 10px 0 5px 0;
-      background-color: none;
-      padding: 5px 5px 15px 15px;
-      margin-bottom: 15px;
-      font-size: 20px;
-      color: #444;
-      border-bottom: 1px solid #eee; }
+
+#main .block {
+  -moz-background-clip: border;
+  -moz-background-inline-policy: continuous;
+  -moz-background-origin: padding;
+  background: #eaeaea none repeat scroll 0 0;
+  border: 1px solid #cacaca;
+  margin-bottom: 24px;
+  margin-left: 5px;
+  margin-right: none;
+  padding: 3px;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2); }
+  #main .block .content {
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background: #fefefe; }
+    #main .block .content .inner {
+      margin: 8px; }
+  #main .block h2.title {
+    margin: 10px 0 5px 0;
+    background-color: none;
+    padding: 5px 5px 15px 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #444;
+    border-bottom: 1px solid #eee; }
 
 .main_container {
   padding: 10px; }
@@ -487,7 +491,6 @@ f.checkbox {
   text-align: right; }
 
 .button {
-  width: 30%;
   border-bottom: 2px solid #bbb;
   border-top: none;
   border-left: none;
@@ -527,16 +530,6 @@ ul.list li {
     margin: 3px 10px 0 0; }
   ul.list li .left {
     padding: 5px 5px; }
-
-#box .block {
-  background: #FFF;
-  border: 1px solid #ddd;
-  border-radius: 10px; }
-  #box .block h2 {
-    background: #576C82;
-    color: #FFF;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px; }
 
 .pub_item {
   padding: 10px;
@@ -808,7 +801,7 @@ input[type=text], input[type=file], input[type=password], input.text, input.titl
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   font-size: 1.3em;
-  width: 89%; }
+  width: 95%; }
 
 textarea {
   display: block;
@@ -879,7 +872,6 @@ input.checkbox {
   color: #888;
   border-top: 1px solid #ddd; }
   #footer .block {
-    text-align: right;
     font-size: 11px;
     padding: 0 10px; }
 
@@ -908,3 +900,6 @@ body {
   width: 800px;
   text-align: left;
   margin: auto; }
+
+#main {
+  align: center; }

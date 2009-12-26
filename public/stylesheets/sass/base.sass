@@ -59,9 +59,6 @@ body
 #container
   min-width: 960px
 
-#header, #wrapper
-  padding: 0 20px
-
 #header
   background: #eaeaea
   position: relative
@@ -205,7 +202,6 @@ body
     &.right
       width: 31%
       float: right
-  .columns
     .column
       width: 48%
   label.right
@@ -251,14 +247,21 @@ ul.list
 
 #box
   width: 500px
-  margin: 50px auto
+  margin: auto
   .block
-    margin-bottom: 20px
+    background: #FFF
+    border: 1px solid #ddd
+    border-radius: 10px
     h2
+      color: #FFF
+      border-top-left-radius: 5px
+      border-top-right-radius: 5px
+      margin-bottom: 20px
       padding: 10px 15px
       margin: 0
     .content
       padding: 10px 20px
+
 
 #placemap
   position: relative
@@ -317,10 +320,11 @@ f.checkbox
   font-size: 0.8em
   color = !light_gray
 
-
-#main
+.mainleft
   width: 68%
   float: left
+
+#main
   .block
     -moz-background-clip: border
     -moz-background-inline-policy: continuous
@@ -553,7 +557,6 @@ f.checkbox
 
 
 .button
-  width: 30%
   border-bottom: 2px solid #bbb
   border-top: none
   border-left: none
@@ -609,16 +612,6 @@ ul.list li
   .left
     padding: 5px 5px
 
-
-#box .block
-  background: #FFF
-  border: 1px solid #ddd
-  border-radius: 10px
-  h2
-    background: #576C82
-    color: #FFF
-    border-top-left-radius: 5px
-    border-top-right-radius: 5px
 
 
 .pub_item
@@ -947,7 +940,7 @@ input, select
     -webkit-border-radius: 3px
     -moz-border-radius: 3px
     font-size: 1.3em
-    width: 89%
+    width: 95%
 
 textarea
   display: block
@@ -1020,7 +1013,6 @@ input.checkbox
   color: #888
   border-top: 1px solid #ddd
   .block
-    text-align: right
     font-size: 11px
     padding: 0 10px
 
@@ -1044,3 +1036,6 @@ body
   :width 800px
   :text-align left
   :margin auto
+
+#main
+  :align center

@@ -1,15 +1,16 @@
 - form_for @user, :html => {:class => "form"} do |f|
   = f.error_messages
-  .group
+  %span.wrap
     = f.label :login
     = f.text_field :login
-  .group
+    %small Use your github username.
+  %span.wrap
     = f.label :email
     = f.text_field :email
-  .group
+  %span.wrap
     = f.label :password
-    = f.password_field :password, :size => 20
-  .group
+    = f.password_field :password, :autocomplete => :off
+  %span.wrap
     = f.label :confirm
     = f.password_field :password_confirmation, :size => 20
     -# - f.inputs :name => "Contatos", :id => "contacts" do

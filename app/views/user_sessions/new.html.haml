@@ -1,36 +1,30 @@
 #box
   .block
-    %h2 Login
     .content.login
+      %h2.title Login
       - form_for UserSession.new, :url => user_session_path, :html => {:class => "form" } do |f|
         = f.error_messages
         .group
-          .left= f.label :login
-          .right= f.text_field :login
-          .clear
+          = f.text_field :login
         .group
-          .left= f.label :password
-          .right= f.password_field :password
-          .clear
+          = f.password_field :password
         .group
           .left= f.label :remember?
           .right= f.check_box :remember_me
           .clear
         .group.navform
-          .left
-            %input.button{ :type => "submit", :value => "Create a new account" }
+          .left= link_to "Create a user", new_user_path
           .right
             %input.button{ :type => "submit", :value => "Login" }
           .clear
 #box
   .block
-    %h2 Login from Open ID
     .content.login
+      %h2.title Login from OpenID
       - form_for UserSession.new, :url => user_session_path, :html => {:class => "form" } do |f|
         = f.error_messages
         .group
-          .left= f.label :openid_identifier
-          .right= f.text_field :openid_identifier
+          .fright= f.text_field :openid_identifier
           .clear
         .group.navform
           %input.button{ :type => "submit", :value => "Login" }

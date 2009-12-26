@@ -19,6 +19,7 @@
             %li= link_to "Profile", "/#{current_user.login}"
             %li= link_to "Logout", "/logout", :class => "red"
           - else
+            %li= link_to "Signup", "/signup"
             %li= link_to "Login", "/login"
             %li= link_to "Join!", "/signup", :class => "red"
         .clear
@@ -26,7 +27,9 @@
       - sidebar = yield(:sidebar) || nil
       - if sidebar
         #sidebar= sidebar
-      #main= yield
+        #main.mainleft= yield
+      - else
+        #main= yield
     .clear
     #footer
       .block

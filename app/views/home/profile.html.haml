@@ -7,9 +7,9 @@
         - else
           No projects.
     - elsif @tag
-      %h2 ##{@tag.name}
+      %h2.title ##{@tag.name}
       - for project in @tag.projects
-        %p= link_to project.name
+        %p= link_to project.name, project
     - else
       #{params[:login]} is avaiable, wanna register it ?
 
