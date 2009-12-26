@@ -3,15 +3,16 @@
     %h3= link_to project.name, project
     = show_tags(project)
     .left
-      %strong #{skill_text(project.skill)} - #{project.todos} TODOs #{project.forks} forks, #{project.watchers} watchers.
+      %strong #{skill_text(project.skill)} - #{project.todos.count} TODOs #{project.forks} forks, #{project.watchers} watchers.
     .right
       .pplwork= project.devs
     .clear
     %p= project.info
     %span.gray Last update #{time_ago_in_words(project.updated_at)}
-    - if project.owners.include? current_user
-      = link_to 'Edit', edit_project_path(project)
-      = link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+    - if current_user
+      - if current_user.admin? || project.owners.include?(current_user)
+        = link_to 'Edit', edit_project_path(project)
+        = link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
     - else
       = link_to 'Help', help_project_path(project), :method => :post
       = link_to 'Watch', watch_project_path(project), :method => :post

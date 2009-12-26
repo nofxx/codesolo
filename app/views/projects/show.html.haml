@@ -34,12 +34,16 @@
         %strong= @project.watchers
         Watchers
 
-    %h3 Todos (#{@project.todos})
-    = link_to @project.todo, @project.todo
+    %h3 Todos (#{@project.todos.count})
+    = link_to @project.issues, @project.issues
+    %ol
+      - for todo in @project.todos
+        %li= todo.name
 
     %h3 Tags
     = @project.tags.empty? ? "No tags, add some!" : show_tags(@project)
 
   %ul
-    %li= link_to 'Edit', edit_project_path(@project) if current_user && current_user.owns?(@project)
+    - if current_user && (current_user.admin? || current_user.owns?(@project))
+      %li= link_to 'Edit', edit_project_path(@project)
     %li= link_to 'Back', projects_path

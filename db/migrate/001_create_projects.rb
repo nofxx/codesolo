@@ -2,13 +2,14 @@ class CreateProjects < ActiveRecord::Migration
   def self.up
     create_table :projects do |t|
       t.string :name, :null => false
-      t.string :url, :todo, :wiki, :forum, :mailist, :irc
+      t.string :url, :issues, :wiki, :forum, :mailist, :irc
 
-      t.integer :devs, :karma, :skill, :todos, :forks, :watchers,
+      t.integer :devs, :karma, :skill, :todos_count, :forks, :watchers,
                 :null => false, :default => 0
 
+      t.boolean :fork, :tests, :private, :null => false, :default => false
+
       t.text :info
-      t.boolean :fork, :tests, :null => false, :default => false
 
       t.timestamp :synced_at
       t.timestamps
@@ -21,9 +22,11 @@ class CreateProjects < ActiveRecord::Migration
 
     add_index :projects, :name
     add_index :projects, :devs
+    add_index :projects, :private
     add_index :projects, :karma
     add_index :projects, :skill
     add_index :projects, :url
+    add_index :projects, :todos_count
     add_index :projects, :watchers
     add_index :projects, :forks
     add_index :projects, :synced_at

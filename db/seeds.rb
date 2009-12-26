@@ -4,7 +4,7 @@
 # Create initial data
 
 ["admin", "juvenal", "jaodonato", "nofxx",  "joker", "unknown"].each do |p|
-  User.create(:login => p, :password => p, :kind => :admin, :on => true,
+  User.create(:login => p, :password => p, :admin => false,
              # :avatar => p == "unknown" ? nil : File.new(RAILS_ROOT + "/db/avatars/#{p}.jpg"),
              :password_confirmation => p, :state => :active, :name => p.capitalize,
              :email => "#{p}@fireho.com", :time_zone => "Brasilia", :locale => "en")
@@ -25,5 +25,6 @@ Project.create!(:name => "codesolo", :url => "http://github.com/nofxx/codesolo",
 
 nofxx = User.find_by_login("nofxx")
 nofxx.binds.create(:project => Project.first, :kind => :owner)
-#nofxx.save
+nofxx.admin = true
+nofxx.save
 

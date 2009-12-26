@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   before_filter :find_project
-  before_filter :require_user, :only => [:destroy, :edit]
+  before_filter :require_user, :except => [:show, :index]
 
   def create
     @project = Project.new(params[:project])
@@ -103,7 +103,4 @@ class ProjectsController < ApplicationController
     @project = Project.find_by_name(params[:id]) if params[:id]
   end
 
-  def require_user
-    redirect_to "/" unless current_user
-  end
 end

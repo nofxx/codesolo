@@ -3,7 +3,6 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
 
       t.string :login,            :limit =>  80,   :null => false
-      t.string :kind,             :limit =>  10,   :null => false
       t.string :email,            :limit => 100
       t.string :name,             :limit => 100,   :default => ''
       t.string :state,            :null  => false, :default => 'passive'
@@ -23,7 +22,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer   :avatar_file_size
       t.datetime  :avatar_updated_at
 
-      t.boolean :on, :null => false, :default => false
+      t.boolean :admin, :null => false, :default => false
 
       t.string :openid_identifier
 
@@ -31,9 +30,8 @@ class CreateUsers < ActiveRecord::Migration
     end
 
     add_index :users, :name
-    add_index :users, :on
+    add_index :users, :admin
     add_index :users, :login, :unique => true
-    add_index :users, :kind
     add_index :users, :email
     add_index :users, :skill
     add_index :users, :persistence_token

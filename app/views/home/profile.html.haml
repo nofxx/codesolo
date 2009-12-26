@@ -18,6 +18,10 @@
     - if @user
       %h2= @user.name
       = link_to "Options", "/options" if @user == current_user
+      - if current_user && current_user.admin?
+        = link_to "Users", "/users"
+        = link_to "Tags", "/tags"
+
       .gray= @user.motto
     - if current_user == @user
       %ul

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 7) do
 
   create_table "binds", :force => true do |t|
     t.integer "user_id",                         :null => false
@@ -53,22 +53,23 @@ ActiveRecord::Schema.define(:version => 6) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name",                          :null => false
+    t.string   "name",                           :null => false
     t.string   "url"
-    t.string   "todo"
+    t.string   "issues"
     t.string   "wiki"
     t.string   "forum"
     t.string   "mailist"
     t.string   "irc"
-    t.integer  "devs",       :default => 0,     :null => false
-    t.integer  "karma",      :default => 0,     :null => false
-    t.integer  "skill",      :default => 0,     :null => false
-    t.integer  "todos",      :default => 0,     :null => false
-    t.integer  "forks",      :default => 0,     :null => false
-    t.integer  "watchers",   :default => 0,     :null => false
+    t.integer  "devs",        :default => 0,     :null => false
+    t.integer  "karma",       :default => 0,     :null => false
+    t.integer  "skill",       :default => 0,     :null => false
+    t.integer  "todos_count", :default => 0,     :null => false
+    t.integer  "forks",       :default => 0,     :null => false
+    t.integer  "watchers",    :default => 0,     :null => false
+    t.boolean  "fork",        :default => false, :null => false
+    t.boolean  "tests",       :default => false, :null => false
+    t.boolean  "private",     :default => false, :null => false
     t.text     "info"
-    t.boolean  "fork",       :default => false, :null => false
-    t.boolean  "tests",      :default => false, :null => false
     t.datetime "synced_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,8 +79,10 @@ ActiveRecord::Schema.define(:version => 6) do
   add_index "projects", ["forks"], :name => "index_projects_on_forks"
   add_index "projects", ["karma"], :name => "index_projects_on_karma"
   add_index "projects", ["name"], :name => "index_projects_on_name"
+  add_index "projects", ["private"], :name => "index_projects_on_private"
   add_index "projects", ["skill"], :name => "index_projects_on_skill"
   add_index "projects", ["synced_at"], :name => "index_projects_on_synced_at"
+  add_index "projects", ["todos_count"], :name => "index_projects_on_todos_count"
   add_index "projects", ["url"], :name => "index_projects_on_url"
   add_index "projects", ["watchers"], :name => "index_projects_on_watchers"
 
@@ -113,9 +116,24 @@ ActiveRecord::Schema.define(:version => 6) do
   add_index "tags", ["name"], :name => "index_tags_on_name"
   add_index "tags", ["taggings_count"], :name => "index_tags_on_taggings_count"
 
+  create_table "todos", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "name",                          :null => false
+    t.integer  "priority",   :default => 0,     :null => false
+    t.boolean  "done",       :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "todos", ["done"], :name => "index_todos_on_done"
+  add_index "todos", ["name"], :name => "index_todos_on_name"
+  add_index "todos", ["priority"], :name => "index_todos_on_priority"
+  add_index "todos", ["project_id"], :name => "index_todos_on_project_id"
+  add_index "todos", ["user_id"], :name => "index_todos_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "login",               :limit => 80,                         :null => false
-    t.string   "kind",                :limit => 10,                         :null => false
     t.string   "email",               :limit => 100
     t.string   "name",                :limit => 100, :default => ""
     t.string   "state",                              :default => "passive", :null => false
@@ -139,18 +157,17 @@ ActiveRecord::Schema.define(:version => 6) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.boolean  "on",                                 :default => false,     :null => false
+    t.boolean  "admin",                              :default => false,     :null => false
     t.string   "openid_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["admin"], :name => "index_users_on_admin"
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["kind"], :name => "index_users_on_kind"
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name"
-  add_index "users", ["on"], :name => "index_users_on_on"
   add_index "users", ["openid_identifier"], :name => "index_users_on_openid_identifier"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :pubs, :dependent => :destroy
+  has_many :todos, :dependent => :nullify
   # has_many :friendships
   # has_many :friends, :through => :friendships #, :class_name => "User"
 
@@ -22,9 +23,6 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :contacts,  :allow_destroy => true
   #accepts_nested_attributes_for :addresses, :allow_destroy => true
-
-
-  symbolize :kind, :in => [:admin, :technic, :owner, :user]
 
 
   acts_as_authentic do |c|
@@ -44,7 +42,6 @@ class User < ActiveRecord::Base
 
   def before_validation
     self.login ||= openid_identifier.split("/")[-1] rescue nil
-    self.kind ||= :user
     self.time_zone ||= "Brasilia"
     self.locale ||= I18n.default_locale
   end
@@ -100,7 +97,6 @@ end
 #
 #  id                  :integer         not null, primary key
 #  login               :string(80)      not null
-#  kind                :string(10)      not null
 #  email               :string(100)
 #  name                :string(100)     default("")
 #  state               :string(255)     default("passive"), not null

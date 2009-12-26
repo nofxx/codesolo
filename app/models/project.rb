@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
   has_many :tags, :through => :taggings
 
   has_many :pubs, :dependent => :destroy
+  has_many :todos, :dependent => :destroy
 
   validates_presence_of :name
   validates_presence_of :url
@@ -18,7 +19,7 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_uniqueness_of :url
 
-  validates_numericality_of :watchers, :forks, :todos
+  validates_numericality_of :watchers, :forks, :todos_count
   validates_inclusion_of :skill, :in => 1..5
   validates_inclusion_of :devs, :in => 1..50
 
@@ -64,10 +65,14 @@ class Project < ActiveRecord::Base
 
   def fetch_github
     begin
-     p repo = Octopi::Repository.find(gh_id)
+      repo = Octopi::Repository.find(gh_id)
       self.name ||= repo.name
       self.info = repo.description unless is_set?(info)
-      self.attributes =  {:todos => repo.open_issues,
+      self.todos << repo.issues.map do |i|
+        next if i.state == "closed"
+        Todo.new(:name => i.title, :priority => i.votes)
+      end
+      self.attributes =  {:todos_count => repo.open_issues,
                           :forks  => repo.forks,
                           :watchers => repo.watchers}
       tags_text = (repo.tags << repo.language).join(" ")
@@ -79,7 +84,7 @@ class Project < ActiveRecord::Base
   end
 
   def before_validation
-    self.todo = url + '/issues' if url && !is_set?(todo)
+    self.issues = url + '/issues' if url && !is_set?(issues)
     self.devs = 1 if devs.zero?
    # fetch_github unless self.name
   end

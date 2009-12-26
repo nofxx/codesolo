@@ -32,6 +32,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    return false unless current_user
+    current_user.admin?
+  end
+
   def store_location
     session[:return_to] = request.request_uri
   end
