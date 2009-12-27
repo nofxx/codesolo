@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.about   '/about',   :controller => 'home',    :action => 'about'
 
   map.friends '/friends', :controller => 'home', :action => 'friends'
+  map.friends '/send',    :controller => 'home', :action => 'sendmail'
 
   # Connect usernames
   map.connect ':login', :controller => 'home', :action => 'profile'

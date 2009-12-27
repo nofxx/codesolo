@@ -22,7 +22,6 @@
               %td= edit_link user
               %td= destroy_link user
       .actions-bar
-        .actions #{@users.length} User(s).
         .pagination
         .clear
 
@@ -33,6 +32,7 @@
   .content
     %div.block
       .content
+        %p #{@users.length} User(s).
         %p
           = image_tag "plus.png"
           = link_to 'Novo usuário', new_user_path, :class => "icon new"

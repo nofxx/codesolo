@@ -94,9 +94,9 @@ module ApplicationHelper
   def destroy_link(id = nil, txt = "Excluir")
     if id
       id = id.id unless id.is_a? Integer
-      link_to txt, { :controller => controller.controller_name, :action => :destroy, :id => id }, :class => 'icon destroy', :method => :delete
+      link_to txt, { :controller => controller.controller_name, :action => :destroy, :id => id }, :class => 'icon destroy', :method => :delete, :confirm => "Really delete?"
     else
-      link_to txt, { :controller => controller.controller_name, :action => :destroy }, :class => 'icon destroy', :method => :delete
+      link_to txt, { :controller => controller.controller_name, :action => :destroy }, :class => 'icon destroy', :method => :delete, :confirm => "Really delete?"
     end
   end
 
@@ -117,15 +117,6 @@ module ApplicationHelper
     else more;
     end
     out % num
-  end
-
-  def search(msg, url)
-    out  = "<div class='wrap'>"
-    out += "<form method='GET' action='/search' class='search' id='sidebar_search'>"
-    out += "<span class='wrap'><input type='text' value='#{msg}' id='search' name='search' />"
-    out += '<input type="submit" value="" id="searchbutton" class="icons" /></span>'
-    out += '</form>'
-    out += "</div>"
   end
 
   def mark_search(name, *opts)

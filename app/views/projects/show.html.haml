@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "app/project"
+
 .block
   .content
     %h2.title= @project.name
@@ -34,14 +37,19 @@
         %strong= @project.watchers
         Watchers
 
-    %h3 Todos (#{@project.todos.count})
-    = link_to @project.issues, @project.issues
-    %ol
-      - for todo in @project.todos
-        %li= todo.name
+    .block
+      %h3= link_to "Todos (#{@project.todos.count})", @project.issues
+      .content
+        %ol
+          - for todo in @project.todos
+            %li= todo.name
 
-    %h3 Tags
-    = @project.tags.empty? ? "No tags, add some!" : show_tags(@project)
+    .block
+
+      %h3 Tags
+      .content= @project.tags.empty? ? "No tags, add some!" : show_tags(@project)
+
+      = render "sendmail"
 
   %ul
     - if current_user && (current_user.admin? || current_user.owns?(@project))

@@ -13,6 +13,14 @@ class UserMailer < ActionMailer::Base
     @body[:url]  = "http://YOURSITE/"
   end
 
+  def send_to_friend(name, email, project)
+    @recipients = email
+    @from = "Code Solo Mail"
+    @subject = "Cool project - #{project}"
+    @sent_on  = Time.now
+    @body  = "#{name} found this project, #{project}"
+  end
+
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"

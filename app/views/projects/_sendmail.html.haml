@@ -1,0 +1,14 @@
+%h3
+  %a#send_friend_a{:href => "#"} Send to a friend
+.content
+  .wrap#send_friend_div
+    - form_for "/send", :html => { :method => :get }, :url => "/send" do |f|
+      = hidden_field_tag :project, @project.name
+      - unless current_user
+        %span.wrap
+          %label Your name
+          %input#name{ :name => "name", :type => "text" }
+      %span.wrap
+        %label Email
+        %input#friend{ :name => "friend", :type => "text" }
+      %input.icons{ :type => "submit", :value => "Send" }

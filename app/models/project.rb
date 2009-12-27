@@ -24,6 +24,7 @@ class Project < ActiveRecord::Base
   validates_inclusion_of :devs, :in => 1..50
 
   named_scope :ranked, :order => :karma
+  named_scope :last_ones, :order => "created_at DESC", :limit => 7
 
   def to_param
     name
@@ -93,3 +94,44 @@ class Project < ActiveRecord::Base
     fetch_github
   end
 end
+
+# == Schema Information
+#
+# Table name: projects
+#
+#  id          :integer         not null, primary key
+#  name        :string(255)     not null, indexed
+#  url         :string(255)     indexed
+#  issues      :string(255)
+#  wiki        :string(255)
+#  forum       :string(255)
+#  mailist     :string(255)
+#  irc         :string(255)
+#  devs        :integer         default(0), not null, indexed
+#  karma       :integer         default(0), not null, indexed
+#  skill       :integer         default(0), not null, indexed
+#  todos_count :integer         default(0), not null, indexed
+#  forks       :integer         default(0), not null, indexed
+#  watchers    :integer         default(0), not null, indexed
+#  fork        :boolean         default(FALSE), not null
+#  tests       :boolean         default(FALSE), not null
+#  private     :boolean         default(FALSE), not null, indexed
+#  info        :text
+#  synced_at   :datetime        indexed
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+# Indexes
+#
+#  index_projects_on_synced_at    (synced_at)
+#  index_projects_on_forks        (forks)
+#  index_projects_on_watchers     (watchers)
+#  index_projects_on_todos_count  (todos_count)
+#  index_projects_on_url          (url)
+#  index_projects_on_skill        (skill)
+#  index_projects_on_karma        (karma)
+#  index_projects_on_private      (private)
+#  index_projects_on_devs         (devs)
+#  index_projects_on_name         (name)
+#
+

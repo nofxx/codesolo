@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "binds", :force => true do |t|
     t.integer "user_id",                         :null => false
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "binds", ["project_id"], :name => "index_binds_on_project_id"
   add_index "binds", ["user_id", "project_id"], :name => "index_binds_on_user_id_and_project_id"
   add_index "binds", ["user_id"], :name => "index_binds_on_user_id"
+
+  create_table "contacts", :force => true do |t|
+    t.integer "contactable_id",   :limit => 20
+    t.string  "contactable_type", :limit => 20
+    t.string  "kind",             :limit => 5,  :null => false
+    t.string  "value",            :limit => 50, :null => false
+    t.text    "info"
+  end
+
+  add_index "contacts", ["contactable_type", "contactable_id"], :name => "index_contacts_on_contactable_type_and_contactable_id"
+  add_index "contacts", ["kind"], :name => "index_contacts_on_kind"
 
   create_table "groups", :force => true do |t|
     t.string   "name",                :null => false

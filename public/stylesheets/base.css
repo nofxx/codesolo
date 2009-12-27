@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0; }
 
+html, body {
+  margin: 0;
+  padding: 0; }
+
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, img, small, strike, strong, em, sub, sup, tt, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td {
   margin: 0;
   padding: 0;
@@ -15,14 +19,16 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, cod
   height: 0; }
 
 h1 {
-  margin: 15px 0;
-  font-size: 22px;
-  font-weight: normal; }
+  color: #333;
+  font-size: 30px;
+  letter-spacing: .04em;
+  margin: 10px 0 20px 0; }
 
 h2 {
-  font-size: 22px;
-  margin: 15px 0;
-  font-weight: normal; }
+  color: #333;
+  font-size: 25px;
+  letter-spacing: .02em;
+  margin: 10px 0 16px; }
 
 h3 {
   font-size: 18px;
@@ -45,17 +51,71 @@ a img {
   border: none; }
 
 body {
-  font-size: 12px;
-  font-family: sans-serif;
-  background: #fff;
-  font-size: 13px;
+  text-align: center;
   line-height: 18px;
-  color: #555;
   margin: 0;
   padding: 0;
   color: #333;
   background: #F3F3F3;
-  font: normal 12px/1.5em "Lucida Grande", "Helvetica Neue", Arial, sans-serif; }
+  font: normal 14px/1.5em "Lucida Grande", "Helvetica Neue", Arial, sans-serif; }
+
+label {
+  font-weight: bold; }
+
+fieldset {
+  padding: 1.4em;
+  margin: 0 0 1.5em 0;
+  border: 1px solid #ccc; }
+
+legend {
+  font-weight: bold;
+  font-size: 1.2em; }
+
+input[type=checkbox], input[type=radio], input.checkbox, input.radio {
+  position: relative;
+  top: .25em; }
+
+form.inline {
+  line-height: 3; }
+  form.inline p {
+    margin-bottom: 0; }
+
+textarea {
+  display: block;
+  background: url(/../../images/layout/input_bg.png) no-repeat #fff;
+  margin: 0;
+  padding: 5px 6px;
+  border: 1px solid #ccc;
+  font: 15px/21px Helvetica Neue,"Arial",Helvetica,Verdana,sans-serif;
+  border: solid 1px #e0e0e0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px; }
+
+form input.input-text:focus, form textarea:focus {
+  outline: none;
+  border-color: #41b5d4;
+  border-width: 2px;
+  margin: -1px; }
+
+label {
+  display: block;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 24px;
+  cursor: pointer;
+  color: #777;
+  margin-bottom: 8px; }
+
+input[type=text], input[type=file], input[type=password], input.text, input.title, input.file, select[type=text], select[type=file], select[type=password], select.text, select.title, select.file {
+  background: url('/images/layout/input_bg.png') no-repeat #fff;
+  margin: 0;
+  padding: 5px 6px;
+  border: 1px solid #ccc;
+  border: solid 1px #e0e0e0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  font-size: 1.3em;
+  width: 95%; }
 
 #container {
   min-width: 960px; }
@@ -86,8 +146,21 @@ body {
 
 #user-navigation {
   position: absolute;
-  top: 0px;
-  right: 20px; }
+  top: 2px;
+  right: 20px;
+  font-size: 1.1em;
+  font-weight: bold; }
+  #user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
+    text-decoration: none;
+    color: #3a3a3a; }
+  #user-navigation ul li a:link, #user-navigation ul li a:visited {
+    color: #3a3a3a; }
+  #user-navigation ul li a:hover {
+    color: #6a6a6a;
+    border-bottom: 1px dotted #CDE;
+    text-decoration: none; }
+  #user-navigation ul li a.red {
+    color: #ff2222; }
 
 #main-navigation {
   width: 100%; }
@@ -258,10 +331,6 @@ a {
 hr {
   background: #aaa; }
 
-p {
-  font-size: 12px;
-  line-height: 20px; }
-
 f.checkbox {
   vertical-align: middle; }
 
@@ -336,8 +405,6 @@ f.checkbox {
       font-size: 16px;
       margin: 5px 0;
       border-bottom: 1px solid #456; }
-    #sidebar .notice p {
-      font-size: 12px; }
   #sidebar .block {
     padding-bottom: 0; }
     #sidebar .block .content {
@@ -349,12 +416,9 @@ f.checkbox {
     padding: 5px 10px;
     color: #333;
     font-weight: bold; }
-  #sidebar ul li a:link, #sidebar ul li a:visited {
-    font-size: 12px; }
   #sidebar ul li a:hover, #sidebar ul li a:active {
     background: none;
     color: #444;
-    font-size: 12px;
     text-decoration: underline; }
   #sidebar ul.navigation li.last a {
     border-bottom: none; }
@@ -389,20 +453,7 @@ f.checkbox {
   text-decoration: none;
   color: #FFF; }
 
-#user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
-  text-decoration: none;
-  color: #3a3a3a; }
-#user-navigation ul li a:link, #user-navigation ul li a:visited {
-  color: #3a3a3a; }
-#user-navigation ul li a:hover {
-  color: #6a6a6a;
-  border-bottom: 1px dotted #CDE;
-  text-decoration: none; }
-#user-navigation ul li a.red {
-  color: #ff2222; }
-
 #main-navigation ul li a {
-  font-size: 12px;
   padding: 3px 10px; }
 #main-navigation ul li.active a:link, #main-navigation ul li.active a:visited, #main-navigation ul li.active a:hover, #main-navigation ul li.active a:active {
   color: #364b69; }
@@ -637,28 +688,12 @@ table.user_grid tr td {
   font-weight: bold;
   color: #777777; }
 
-html, body {
-  margin: 0;
-  padding: 0; }
-
 table {
   border-collapse: collapse;
   border-spacing: 0; }
 
 ol, ul {
   list-style: none; }
-
-h1 {
-  color: #000;
-  font-size: 30px;
-  letter-spacing: .04em;
-  margin: 10px 0 20px 0; }
-
-h2 {
-  color: #555;
-  font-size: 18px;
-  letter-spacing: .02em;
-  margin: 20px 0 16px; }
 
 a {
   color: #008fc5; }
@@ -713,8 +748,7 @@ a {
 p.warning, p.error, p.success, p.info {
   margin: 30px 0 15px;
   padding: 4px 9px;
-  color: #fff;
-  font-size: 12px; }
+  color: #fff; }
 p.warning a, p.error a, p.success a, p.info a {
   color: #fff;
   font-weight: bold;
@@ -728,27 +762,6 @@ p.error {
     color: #fff; }
   p.error small {
     color: #930; }
-
-label {
-  font-weight: bold; }
-
-fieldset {
-  padding: 1.4em;
-  margin: 0 0 1.5em 0;
-  border: 1px solid #ccc; }
-
-legend {
-  font-weight: bold;
-  font-size: 1.2em; }
-
-input[type=checkbox], input[type=radio], input.checkbox, input.radio {
-  position: relative;
-  top: .25em; }
-
-form.inline {
-  line-height: 3; }
-  form.inline p {
-    margin-bottom: 0; }
 
 .error, .notice, .success {
   padding: .8em;
@@ -779,42 +792,16 @@ form.inline {
 .success a {
   color: #264409; }
 
-label {
-  display: block;
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 24px;
-  cursor: pointer;
-  color: #777;
-  margin-bottom: 8px; }
-
-input[type=text], input[type=file], input[type=password], input.text, input.title, input.file, select[type=text], select[type=file], select[type=password], select.text, select.title, select.file {
-  background: url('/images/layout/input_bg.png') no-repeat #fff;
-  margin: 0;
-  padding: 5px 6px;
-  border: 1px solid #ccc;
-  border: solid 1px #e0e0e0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  font-size: 1.3em;
-  width: 95%; }
-
-textarea {
-  display: block;
-  background: url(/../../images/layout/input_bg.png) no-repeat #fff;
-  margin: 0;
-  padding: 5px 6px;
-  border: 1px solid #ccc;
-  font: 15px/21px Helvetica Neue,"Arial",Helvetica,Verdana,sans-serif;
-  border: solid 1px #e0e0e0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px; }
-
-form input.input-text:focus, form textarea:focus {
-  outline: none;
-  border-color: #41b5d4;
-  border-width: 2px;
-  margin: -1px; }
+#sidebar {
+  line-height: 2em; }
+  #sidebar label {
+    font-size: 14px;
+    margin-bottom: 2px; }
+  #sidebar input[type=text], #sidebar input[type=file], #sidebar input[type=password], #sidebar input.text, #sidebar input.title, #sidebar input.file, #sidebar select[type=text], #sidebar select[type=file], #sidebar select[type=password], #sidebar select.text, #sidebar select.title, #sidebar select.file {
+    margin: 0;
+    padding: 2px 3px;
+    font-size: 1.1em;
+    width: 65%; }
 
 .project {
   display: block;
@@ -872,25 +859,22 @@ input.checkbox {
     padding: 0 10px; }
 
 .cloud1 {
-  font-size: 1em; }
-
-.cloud2 {
   font-size: 1.2em; }
 
-.cloud3 {
+.cloud2 {
   font-size: 1.4em; }
 
-.cloud4 {
+.cloud3 {
   font-size: 1.6em; }
 
-.cloud5 {
+.cloud4 {
   font-size: 1.8em; }
 
-.cloud6 {
+.cloud5 {
   font-size: 2em; }
 
-body {
-  text-align: center; }
+.cloud6 {
+  font-size: 2.2em; }
 
 #wrapper {
   width: 800px;

@@ -18,3 +18,18 @@ class Tag < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: tags
+#
+#  id             :integer         not null, primary key
+#  name           :string(255)     not null, indexed
+#  taggings_count :integer         default(0), not null, indexed
+#
+# Indexes
+#
+#  index_tags_on_taggings_count  (taggings_count)
+#  index_tags_on_name            (name)
+#
+

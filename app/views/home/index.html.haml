@@ -12,7 +12,7 @@
       .right
         = image_tag "magnifier.png"
         or
-        %strong= link_to "Register my project", new_project_path
+        %strong= link_to "Register new!", new_project_path
     .clear
     .inner= tag_cloud
 
@@ -42,8 +42,12 @@
     - if current_user
       %h3= link_to "My projects", "/profile"
       %ul.navigation
-        %li= link_to "New project!", new_project_path
+        %li= link_to "Register new project!", new_project_path
         - for project in current_user.projects
+          %li= link_to project.name, project
+      %h3= link_to "New projects", "/projects"
+      %ul.navigation
+        - for project in Project.last_ones
           %li= link_to project.name, project
       -# %table.user_grid
       -#  current_user.projects.each_slice(5) do |slice|

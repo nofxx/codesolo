@@ -10,6 +10,9 @@ module ProjectsHelper
   def skill_text(i)
     t("skills.#{i}")
   end
+
+
+
 end
 
 

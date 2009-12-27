@@ -31,15 +31,23 @@ class Pub < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: pubs
 #
 #  id         :integer         not null, primary key
-#  user_id    :integer
-#  head       :string(255)     not null
+#  user_id    :integer         indexed
+#  project_id :integer         indexed
+#  head       :string(255)     not null, indexed
 #  body       :text
-#  created_at :timestamp
-#  updated_at :timestamp
+#  created_at :datetime
+#  updated_at :datetime
+#
+# Indexes
+#
+#  index_pubs_on_head        (head)
+#  index_pubs_on_project_id  (project_id)
+#  index_pubs_on_user_id     (user_id)
 #
 

@@ -30,4 +30,10 @@ class HomeController < ApplicationController
     @projects.flatten!
   end
 
+  def sendmail
+    if UserMailer.deliver_send_to_friend(params[:name] || current_user.name, params[:email], params[:project])
+      redirect_to "/projects/#{params[:project]}"
+    end
+  end
+
 end

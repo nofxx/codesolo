@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "app/project_new"
+
 - form_for(project, :html => {:class => :form}) do |f|
   = f.error_messages
   .left
@@ -19,6 +22,21 @@
     %span.wrap
       = f.label :info
       = f.text_area :info, :size => "53x6"
+    #extra_fields
+      %span.wrap
+        = f.label :wiki
+        = f.text_field :wiki
+      %span.wrap
+        = f.label :irc
+        = f.text_field :irc
+      %span.wrap
+        = f.label :forum
+        = f.text_field :forum
+      %span.wrap
+        = f.label :mailist
+        = f.text_field :mailist
+    %a#show_extra{:href => "#"} Extra...
+
   .right
     %span.wrap
       = f.label :devs

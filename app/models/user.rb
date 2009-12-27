@@ -91,33 +91,52 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
 #
 #  id                  :integer         not null, primary key
-#  login               :string(80)      not null
-#  email               :string(100)
-#  name                :string(100)     default("")
+#  login               :string(80)      not null, indexed
+#  email               :string(100)     indexed
+#  name                :string(100)     default(""), indexed
 #  state               :string(255)     default("passive"), not null
-#  twitter_pass        :string(50)
-#  crypted_password    :string(255)     not null
-#  password_salt       :string(255)     not null
-#  persistence_token   :string(255)
-#  single_access_token :string(255)
-#  perishable_token    :string(255)
+#  motto               :string(255)
+#  url                 :string(255)
+#  crypted_password    :string(255)
+#  password_salt       :string(255)
+#  persistence_token   :string(255)     indexed
+#  single_access_token :string(255)     indexed
+#  perishable_token    :string(255)     indexed
 #  current_login_ip    :string(255)
 #  last_login_ip       :string(255)
 #  time_zone           :string(50)      not null
 #  locale              :string(50)      not null
-#  last_login_at       :timestamp
-#  last_request_at     :timestamp
-#  current_login_at    :timestamp
+#  last_login_at       :datetime
+#  last_request_at     :datetime        indexed
+#  current_login_at    :datetime
 #  login_count         :integer
-#  doc                 :string(20)
-#  reg                 :string(20)
-#  on                  :boolean         default(FALSE), not null
-#  created_at          :timestamp
-#  updated_at          :timestamp
+#  skill               :integer         indexed
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  admin               :boolean         default(FALSE), not null, indexed
+#  openid_identifier   :string(255)     indexed
+#  created_at          :datetime
+#  updated_at          :datetime
+#
+# Indexes
+#
+#  index_users_on_openid_identifier    (openid_identifier)
+#  index_users_on_last_request_at      (last_request_at)
+#  index_users_on_single_access_token  (single_access_token)
+#  index_users_on_perishable_token     (perishable_token)
+#  index_users_on_persistence_token    (persistence_token)
+#  index_users_on_skill                (skill)
+#  index_users_on_email                (email)
+#  index_users_on_login                (login) UNIQUE
+#  index_users_on_admin                (admin)
+#  index_users_on_name                 (name)
 #
 
