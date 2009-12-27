@@ -100,7 +100,9 @@ class ProjectsController < ApplicationController
   private
 
   def find_project
-    @project = Project.find_by_name(params[:id]) if params[:id]
+    if params[:id]
+      @project = Project.find_by_name(params[:id])
+    end
   end
 
 end
