@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def show_tags(o)
-    o.tags.inject("<span class='gray'>") do |str, tag|
+    o.tags.inject("<span class='tagcloud'>") do |str, tag|
       str += "<a href='/#{tag.name}'>#{tag.name}</a> "
     end + "</span>"
   end

@@ -1,12 +1,12 @@
 - for project in @projects
   - content_tag_for :div, project do
     %h3= link_to project.name, project
-    = show_tags(project)
     .left
       %strong #{skill_text(project.skill)} - #{project.todos.count} TODOs #{project.forks} forks, #{project.watchers} watchers.
     .right
       .pplwork= project.devs
     .clear
+    %p= show_tags(project)
     %p= project.info
     %span.gray Last update #{time_ago_in_words(project.updated_at)}
     - if current_user
