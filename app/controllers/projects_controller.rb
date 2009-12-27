@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    redirect_to projects_path unless current_user.owns?(@project)
+    redirect_to projects_path unless current_user.admin? || current_user.owns?(@project)
   end
 
   def watch

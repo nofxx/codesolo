@@ -9,7 +9,8 @@ class Tag < ActiveRecord::Base
     taggings.all(:conditions => { :taggable_type => :Project}).map(&:taggable)
   end
 
-  def up!
+  def before_validation
+    self.name = name.downcase if name
 
   end
 
