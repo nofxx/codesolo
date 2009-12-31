@@ -17,7 +17,6 @@ class PubsController < ApplicationController
         format.html { redirect_to @pub.project }
         format.xml  { render :xml => @pub, :status => :created, :location => @project }
       else
-        p @pub.errors
         format.html { redirect_to @pub.project }
         # format.html { render :action => "new" }
         format.xml  { render :xml => @pub.errors, :status => :unprocessable_entity }

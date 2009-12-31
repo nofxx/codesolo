@@ -88,6 +88,7 @@ class Project < ActiveRecord::Base
   def before_validation
     self.issues = url + '/issues' if url && !is_set?(issues)
     self.devs = 1 if devs.zero?
+    self.skill = 2 if skill.zero?
    # fetch_github unless self.name
   end
 
