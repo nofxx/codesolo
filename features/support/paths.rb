@@ -10,6 +10,11 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
+    when /the new project page/
+      new_project_path
+    when /the projects page/
+      projects_path
+
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
