@@ -6,6 +6,7 @@ class Bind < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => [:project_id, :kind]
 
   symbolize :kind, :in => [:watch, :owner, :dev]
+
 end
 
 # == Schema Information

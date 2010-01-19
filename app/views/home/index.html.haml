@@ -21,14 +21,14 @@
     %h2.title Spotlight
     .inner.form
     .inner
-      - unless @all.empty?
+      - unless @projects.empty?
         %ol
-          - for item in @all
+          - for project in @projects
             %li.pub_item.latest
-              = link_to item.name, item
-              (#{skill_text(item.skill)} - #{item.devs})
-              %span.gray #{item.info}
-              = show_tags(item)
+              = link_to project.name, project
+              (#{skill_text(project.skill)} - #{project.devs})
+              %span.gray #{project.info}
+              = show_tags(project)
       - else
         No projects?
 

@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   # current_user atualizations....
   def index
-    @all = Project.search(1)
+    @projects = Project.search(1)
     @tags = Tag.all
   end
 
