@@ -13,6 +13,7 @@ module ApplicationHelper
   end
 
   def tag_cloud(tags = Tag.all)
+    return "No tags" if tags.empty?
     counts = tags.map(&:count)
     max, min = counts.max, counts.min
     divisor = ((max - min) / 6) + 1

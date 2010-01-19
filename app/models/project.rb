@@ -14,10 +14,10 @@ class Project < ActiveRecord::Base
   has_many :todos, :dependent => :destroy
 
   validates_presence_of :name
-  validates_presence_of :url
+  # validates_presence_of :url
 
   validates_uniqueness_of :name
-  validates_uniqueness_of :url
+  validates_uniqueness_of :url, :allow_blank => true
 
   validates_numericality_of :watchers, :forks, :todos_count
   validates_inclusion_of :skill, :in => 1..5
@@ -66,7 +66,8 @@ class Project < ActiveRecord::Base
 
   def fetch_github
     begin
-      repo = Octopi::Repository.find(gh_id)
+      repo = Octopi::Repository.find(gh_id) rescue nil
+      return unless repo
       self.name ||= repo.name
       self.info = repo.description unless is_set?(info)
       self.todos << repo.issues.map do |i|
@@ -87,11 +88,12 @@ class Project < ActiveRecord::Base
   def before_validation
     self.issues = url + '/issues' if url && !is_set?(issues)
     self.devs = 1 if devs.zero?
+    self.skill = 2 if skill.zero?
    # fetch_github unless self.name
   end
 
   def before_save
-    fetch_github
+    fetch_github 
   end
 end
 

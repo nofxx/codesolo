@@ -13,6 +13,6 @@
       - if current_user.admin? || project.owners.include?(current_user)
         = link_to 'Edit', edit_project_path(project)
         = link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
-    - else
-      = link_to 'Help', help_project_path(project), :method => :post
-      = link_to 'Watch', watch_project_path(project), :method => :post
+      - else
+        = link_to 'Help', help_project_path(project), :method => :post
+        = link_to 'Watch', watch_project_path(project), :method => :post
