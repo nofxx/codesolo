@@ -547,6 +547,17 @@ f.checkbox {
   color: #888;
   font-weight: bold; }
 
+.border {
+  -moz-background-clip: border;
+  -moz-background-inline-policy: continuous;
+  -moz-background-origin: padding;
+  background: #FFFFFF none repeat scroll 0 0;
+  border: 1px solid #B4AC99;
+  margin-bottom: 24px;
+  margin-left: 36px;
+  margin-right: 36px;
+  padding: 3px;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2); }
 
 .description {
   color: #aaa;

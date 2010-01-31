@@ -48,11 +48,13 @@ class ApplicationController < ActionController::Base
 
   # pt_br , en_us
   def get_browser_locale
-    request.env["HTTP_ACCEPT_LANGUAGE"].split("-")[0]
+    if l = request.env["HTTP_ACCEPT_LANGUAGE"]
+        l.split("-")[0]
+    end
   end
 
   def set_locale
-    locale = current_user.locale if current_user
+    locale = current_user.try(:locale)
     I18n.locale = locale || get_browser_locale || params[:locale] || I18n.default_locale
     I18n.load_path += Dir[ File.join(RAILS_ROOT, 'lib', 'locale', '*.{rb,yml}') ]
   end
