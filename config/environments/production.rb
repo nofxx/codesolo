@@ -26,3 +26,13 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+#
+# Rack bosh
+# I think there's a better way to load racks into rails oO
+require File.join(RAILS_ROOT, "lib", "racks", "proxy")
+config.middleware.use ::Rack::Proxy do |req|
+  if req.path =~ %r{^/http-bind$}
+    URI.parse("http://localhost:5280/http-bind/#{req.query_string}")
+  end
+end
