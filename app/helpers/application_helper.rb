@@ -6,10 +6,6 @@ module ApplicationHelper
     !!current_user
   end
 
-  def admin?
-    current_user.kind == :admin
-  end
-
   def show_tags(o)
     o.tags.inject("<span class='tagcloud'>") do |str, tag|
       str += "<a href='/#{tag.name}'>#{tag.name}</a> "
@@ -23,11 +19,9 @@ module ApplicationHelper
     divisor = ((max - min) / 6) + 1
 
     tags.inject("<div class='cloud'>") do |str, tag|
-
       str += "<a href='/#{tag.name}' class='cloud#{(tag.count - min) / divisor}'>#{tag.name}</a> "
     end + "</div>"
   end
-
 
   def puts_pub(pub, avatar=false, latest=false)
     out = ""
@@ -44,9 +38,7 @@ module ApplicationHelper
     out << "(#{pub.created_at})</span></span>"
     out << "<ul class='actions-hover'><li><span class='del'><span class='delete-icon icon'>
            <a  href='/' ></a> </span> </span></li></ul>"
-
   end
-
 
   def display_flashes
     flashes = ''

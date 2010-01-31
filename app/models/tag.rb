@@ -11,7 +11,6 @@ class Tag < ActiveRecord::Base
 
   def before_validation
     self.name = name.downcase if name
-
   end
 
   def count
