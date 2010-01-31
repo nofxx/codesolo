@@ -24,6 +24,7 @@ db/development_structure.sql
 bin/*
 vendor/bundler_gems/*
 vendor/gems/*
+mkmf.log
 
 # Public
 public/files/users/*/**
