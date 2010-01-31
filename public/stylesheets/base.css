@@ -354,14 +354,18 @@ f.checkbox {
   -moz-background-clip: border;
   -moz-background-inline-policy: continuous;
   -moz-background-origin: padding;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
   background: #eaeaea none repeat scroll 0 0;
   border: 1px solid #cacaca;
   margin-bottom: 24px;
   margin-left: 5px;
   margin-right: none;
-  padding: 3px;
+  padding: 1px;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2); }
   #main .block .content {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ccc;
